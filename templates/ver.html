@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Contraseñas</title>
+</head>
+<body>
+    <h1>Contraseñas almacenadas</h1>
+    <table border="1">
+        <tr>
+            <th>Servicio</th>
+            <th>Usuario</th>
+            <th>Contraseña</th>
+        </tr>
+        {% for contrasena in contrasenas %}
+            <tr>
+                <td>{{ contrasena[0] }}</td>
+                <td>{{ contrasena[1] }}</td>
+                <td>{{ contrasena[2] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Volver al inicio</a>
+</body>
+</html>
