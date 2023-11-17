@@ -15,94 +15,43 @@
             <th>Acciones</th>
         </tr>
         {% for contrasena in contrasenas %}
-            <tr>
-                <td>{{ contrasena[0] }}</td>
-                <td>{{ contrasena[1] }}</td>
-                <td id="contrasena{{ loop.index }}">{{ contrasena[2] }}</td>
-                <td>
-                    <button onclick="habilitarEdicion({{ loop.index }})">Editar</button>
-                    <button onclick="confirmarEliminar({{ loop.index }})">Eliminar</button>
-                </td>
-            </tr>
+        <tr>
+            <td>{{ contrasena[0] }}</td>
+            <td>{{ contrasena[1] }}</td>
+            <td> <input type="password" value="{{ contrasena[2] }}" class="contrasena-fila" readonly>
+            </td>
+            <td><button type="button" class="toggle-btn" onclick="togglePassword(this)">Mostrar/ocultar</button>
+
+                <button type="button" class="copy-btn" onclick="copyToClipboard(this)" disabled>Copiar</button>
+            </td>
+        </tr>
         {% endfor %}
     </table>
     <br>
-    <a href="/">Volver</a>
-
-
+    <a href="/">Volver al inicio</a>
     <script>
-        function habilitarEdicion(index) {
-            const contrasenaElement = document.getElementById(`contrasena${index}`);
-            const editarContainer = document.createElement('div');
-            
-            const nuevaContrasenaInput = document.createElement('input');
-            nuevaContrasenaInput.type = 'text';
-            nuevaContrasenaInput.value = contrasenaElement.innerText;
-    
-            const guardarBtn = document.createElement('button');
-            guardarBtn.innerText = 'Guardar';
-            guardarBtn.onclick = function () {
-                const confirmacion = confirm("¿Estás seguro de que deseas guardar los cambios?");
-                if (confirmacion) {
-                    const nuevaContrasena = nuevaContrasenaInput.value;
-                    guardarCambios(index, nuevaContrasena);
-                    editarContainer.remove();
-                }
-            };
-    
-            editarContainer.appendChild(nuevaContrasenaInput);
-            editarContainer.appendChild(guardarBtn);
-    
-            contrasenaElement.innerHTML = '';
-            contrasenaElement.appendChild(editarContainer);
+        function togglePassword(button) {
+            const contrasenaInput = button.parentNode.previousElementSibling.querySelector('.contrasena-fila');
+            const tipoInput = contrasenaInput.type === 'password' ? 'text' : 'password';
+            contrasenaInput.type = tipoInput;
+
+            // Habilita o deshabilita el botón de copiar según el estado del campo de contraseña
+            const copyButton = button.parentNode.querySelector('.copy-btn');
+            copyButton.disabled = tipoInput === 'password';
         }
-    
-        function confirmarEliminar(index) {
-            const contrasenaElement = document.getElementById(`contrasena${index}`);
-            const confirmacion = confirm("¿Estás seguro de que deseas eliminar esta contraseña?");
-            if (confirmacion) {
-                eliminarContraseña(index);
-                contrasenaElement.parentNode.parentNode.remove();
-            }
-        }
-    
-        function guardarCambios(index, nuevaContrasena) {
-            fetch('/editar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    index: index,
-                    nuevaContrasena: nuevaContrasena,
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message); // Mensaje del servidor
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-    
-        function eliminarContraseña(index) {
-            fetch('/eliminar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    index: index,
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message); // Mensaje del servidor
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+
+        function copyToClipboard(button) {
+            const contrasenaInput = button.parentNode.previousElementSibling.querySelector('.contrasena-fila');
+
+            // Selecciona el texto en el campo de contraseña
+            contrasenaInput.select();
+            contrasenaInput.setSelectionRange(0, 99999); // Para dispositivos móviles
+
+            // Copia el texto al portapapeles
+            document.execCommand('copy');
+
+            // Deselecciona el texto para evitar confusiones visuales
+            window.getSelection().removeAllRanges();
         }
     </script>
 </body>

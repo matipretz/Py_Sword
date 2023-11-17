@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 
 app = Flask(__name__)
@@ -54,41 +54,6 @@ def ver_contrasenas():
     conn.close()
 
     return render_template('ver.html', contrasenas=contrasenas)
-
-# Ruta para editar contraseña
-@app.route('/editar', methods=['POST'])
-def editar_contraseña():
-    data = request.get_json()
-    index = data['index']
-    nueva_contrasena = data['nuevaContrasena']
-
-    # Aquí deberías realizar la actualización en tu base de datos
-    # Por ejemplo, utilizando SQLite:
-
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
-    cursor.execute('UPDATE contrasenas SET contrasena = ? WHERE id = ?', (nueva_contrasena, index))
-    conn.commit()
-    conn.close()
-
-    return jsonify({'message': 'Contraseña editada correctamente'})
-
-# Ruta para eliminar contraseña
-@app.route('/eliminar', methods=['POST'])
-def eliminar_contraseña():
-    data = request.get_json()
-    index = data['index']
-
-    # Aquí deberías realizar la eliminación en tu base de datos
-    # Por ejemplo, utilizando SQLite:
-
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
-    cursor.execute('DELETE FROM contrasenas WHERE id = ?', (index,))
-    conn.commit()
-    conn.close()
-
-    return jsonify({'message': 'Contraseña eliminada correctamente'})
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -15,8 +15,10 @@
         <input type="text" name="usuario" required>
         <br>
         <label for="contrasena">Contraseña:</label>
-        <input type="text" name="contrasena" id="contrasena" required>
-        <button type="button" onclick="generarContrasena()">Generar Contraseña</button>
+        <input type="password" name="contrasena" id="contrasena" required>
+        <button type="button" id="toggleBtn" onclick="togglePassword()">Mostrar/ocultar</button>
+
+        <button type="button" onclick="generarContrasena()">Al azar</button>
         <br>
         <label for="longitud">Longitud:</label>
         <input type="range" id="longitud" name="longitud" min="4" max="16" value="12">
@@ -28,6 +30,11 @@
     <a href="/ver">Ver Contraseñas</a>
 
     <script>
+        function togglePassword() {
+            const contrasenaInput = document.getElementById('contrasena');
+            const tipoInput = contrasenaInput.type === 'password' ? 'text' : 'password';
+            contrasenaInput.type = tipoInput;
+        }
         function generarContrasena() {
             const longitud = document.getElementById('longitud').value;
             const contrasenaInput = document.getElementById('contrasena');
