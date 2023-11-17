@@ -13,4 +13,5 @@ pycparser==2.21
 pyperclip==1.8.2
 style==1.1.0
 update==0.0.1
+waitress==2.1.2
 Werkzeug==3.0.1
