@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
-import sqlite3
+import sqlite3, os
 
 app = Flask(__name__)
 
 # Configuración de la base de datos
 DATABASE = 'contraseñas.db'
+port = int(os.environ.get("PORT", 5000))
 
 def crear_tabla():
     conn = sqlite3.connect(DATABASE)
@@ -56,4 +57,4 @@ def ver_contrasenas():
     return render_template('ver.html', contrasenas=contrasenas)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=port)
