@@ -12,16 +12,98 @@
             <th>Servicio</th>
             <th>Usuario</th>
             <th>Contraseña</th>
+            <th>Acciones</th>
         </tr>
         {% for contrasena in contrasenas %}
             <tr>
                 <td>{{ contrasena[0] }}</td>
                 <td>{{ contrasena[1] }}</td>
-                <td>{{ contrasena[2] }}</td>
+                <td id="contrasena{{ loop.index }}">{{ contrasena[2] }}</td>
+                <td>
+                    <button onclick="habilitarEdicion({{ loop.index }})">Editar</button>
+                    <button onclick="confirmarEliminar({{ loop.index }})">Eliminar</button>
+                </td>
             </tr>
         {% endfor %}
     </table>
     <br>
-    <a href="/">Volver al inicio</a>
+    <a href="/">Volver</a>
+
+
+    <script>
+        function habilitarEdicion(index) {
+            const contrasenaElement = document.getElementById(`contrasena${index}`);
+            const editarContainer = document.createElement('div');
+            
+            const nuevaContrasenaInput = document.createElement('input');
+            nuevaContrasenaInput.type = 'text';
+            nuevaContrasenaInput.value = contrasenaElement.innerText;
+    
+            const guardarBtn = document.createElement('button');
+            guardarBtn.innerText = 'Guardar';
+            guardarBtn.onclick = function () {
+                const confirmacion = confirm("¿Estás seguro de que deseas guardar los cambios?");
+                if (confirmacion) {
+                    const nuevaContrasena = nuevaContrasenaInput.value;
+                    guardarCambios(index, nuevaContrasena);
+                    editarContainer.remove();
+                }
+            };
+    
+            editarContainer.appendChild(nuevaContrasenaInput);
+            editarContainer.appendChild(guardarBtn);
+    
+            contrasenaElement.innerHTML = '';
+            contrasenaElement.appendChild(editarContainer);
+        }
+    
+        function confirmarEliminar(index) {
+            const contrasenaElement = document.getElementById(`contrasena${index}`);
+            const confirmacion = confirm("¿Estás seguro de que deseas eliminar esta contraseña?");
+            if (confirmacion) {
+                eliminarContraseña(index);
+                contrasenaElement.parentNode.parentNode.remove();
+            }
+        }
+    
+        function guardarCambios(index, nuevaContrasena) {
+            fetch('/editar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    index: index,
+                    nuevaContrasena: nuevaContrasena,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Mensaje del servidor
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    
+        function eliminarContraseña(index) {
+            fetch('/eliminar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    index: index,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Mensaje del servidor
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </body>
 </html>

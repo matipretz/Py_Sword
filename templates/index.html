@@ -15,11 +15,39 @@
         <input type="text" name="usuario" required>
         <br>
         <label for="contrasena">Contraseña:</label>
-        <input type="password" name="contrasena" required>
+        <input type="text" name="contrasena" id="contrasena" required>
+        <button type="button" onclick="generarContrasena()">Generar Contraseña</button>
+        <br>
+        <label for="longitud">Longitud:</label>
+        <input type="range" id="longitud" name="longitud" min="4" max="16" value="12">
+        <span id="valorLongitud">12</span>
         <br>
         <button type="submit">Agregar Contraseña</button>
     </form>
     <br>
     <a href="/ver">Ver Contraseñas</a>
+
+    <script>
+        function generarContrasena() {
+            const longitud = document.getElementById('longitud').value;
+            const contrasenaInput = document.getElementById('contrasena');
+            const contrasenaGenerada = generarContrasenaAleatoria(longitud);
+            contrasenaInput.value = contrasenaGenerada;
+        }
+
+        function generarContrasenaAleatoria(longitud) {
+            const caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+";
+            let contrasena = '';
+            for (let i = 0; i < longitud; i++) {
+                const caracter = caracteres[Math.floor(Math.random() * caracteres.length)];
+                contrasena += caracter;
+            }
+            return contrasena;
+        }
+
+        document.getElementById('longitud').addEventListener('input', function () {
+            document.getElementById('valorLongitud').innerText = this.value;
+        });
+    </script>
 </body>
 </html>
