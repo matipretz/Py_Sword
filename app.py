@@ -4,7 +4,7 @@ import sqlite3, os
 app = Flask(__name__)
 
 # Configuración de la base de datos
-DATABASE = 'contraseñas.db'
+DATABASE = 'contrasenas.db'
 port = int(os.environ.get("PORT", 5000))
 
 def crear_tabla():
