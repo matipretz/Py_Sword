@@ -38,7 +38,7 @@ D. [Links](#links)
 ### FUNCIONES
 - [ ] CRUD usuarios
 - [ ] AUTH-Log
-- [ ] CRUD contraseñas
+- [x] CRUD contraseñas
 - [ ] Exportar db
 - [ ] Importar db
 - [ ] Encriptar
@@ -48,12 +48,8 @@ D. [Links](#links)
 - [ ] Landing
 - [ ] Pagina de logeo
 - [ ] Pagina de sign in
-- [ ] Pagina de BD
-- [ ] Modal crear contraseña
-- [ ] Modal devolver contraseña
-- [ ] Modal actualizar contraseña
-- [ ] Modal borrar contraseña
-- [ ] Modal borrar contraseña
+- [X] Pagina de BD
+- [x] Modal editar contraseña
 - [ ] Modal exportar db
 - [ ] Modal importar db
 
