@@ -7,7 +7,9 @@
 ## Menú
 A. [Título y Descripción del Proyecto](#título-y-descripción-del-proyecto)
 
-B. [Casos de Uso](#casos-de-uso)   
+B. [Casos de Uso](#casos-de-uso)
+
+B. [Instrucciones de clonado y desarrollo](#instrucciones-de-clonado-y-desarrollo)   
 
 C. [Integrantes del Equipo](#integrantes-del-equipo)
 
@@ -25,6 +27,60 @@ D. [Links](#links)
 - Generación de Contraseñas Fuertes: Ofrece la capacidad de generar contraseñas fuertes y aleatorias, contribuyendo así a mejorar la seguridad al crear credenciales robustas para diferentes servicios en línea.
 
 - Eliminación de la Carga de Recordar Contraseñas: Al centralizar la gestión de contraseñas, PySword alivia la carga de recordar múltiples credenciales. Los usuarios pueden confiar en el administrador para acceder a sus contraseñas de manera segura cuando sea necesario.
+
+## Instrucciones de clonado y desarrollo:
+Puedes usar la terminal de tu sistema operativo o la terminal integrada en tu entorno de desarrollo, como VSCode.
+Navega a la carpeta donde deseas clonar el repositorio utilizand el comando cd para cambiar al directorio deseado. Por ejemplo:
+```bash
+cd ruta/donde/quieres/clonar
+```
+Luego utiliza el siguiente comando para clonar el repositorio:
+```bash
+git clone https://github.com/matipretz/Py_Sword.git
+```
+Esto descargará el repositorio en tu máquina local.
+
+Luego accede al directorio del repositorio:
+```bash
+cd Py_Sword
+```
+¡Listo!
+Ahora tienes el repositorio clonado en tu máquina y estás dentro de su directorio. Puedes comenzar a trabajar en él.
+
+---
+El siguiente paso es crear un entrono de desarrollo virtual. 'venv' es un módulo que viene incluido en la biblioteca estándar de Python. Puedes hacerlo con el siguiente comando:
+```bash
+python -m venv venv
+```
+Esto creará una carpeta llamada venv que contendrá tu entorno virtual. Ahora activa tu entorno virtual:
+En Windows, usa este comando:
+```bash
+.\venv\Scripts\activate
+```
+En sistemas Unix o MacOS:
+```bash
+source venv/bin/activate
+```
+Con el entorno virtual activado, ahora puedes instalar las dependencias desde el archivo requirements.txt:
+```bash
+pip install -r requirements.txt
+```
+Asegúrate de que estás en la misma carpeta que tu archivo requirements.txt cuando ejecutas este comando.
+
+---
+Recuerda que es una buena práctica desactivar el entorno virtual cuando hayas terminado de trabajar en tu proyecto:
+```bash
+deactivate
+```
+Al ejecutar este comando, el entorno virtual se desactivará, y volverás al entorno de Python global de tu sistema.
+---
+
+Ahora, puedes ejecutar la aplicación:
+```bash
+python app.py
+```
+Este comando iniciará la aplicación en el servidor local. Puedes acceder a ella desde tu navegador visitando http://127.0.0.1:5000/
+
 
 ## Integrantes del Equipo:
 - [Matias Martin Murad Pretz](https://www.linkedin.com/in/matiasmurad/) (representante)
