@@ -2,7 +2,7 @@ import os
 import sqlite3
 
 # Conectar a la base de datos SQLite
-conn = sqlite3.connect('contraseñas.db')
+conn = sqlite3.connect('contrasenas.sqlite')
 cursor = conn.cursor()
 
 # Crear la tabla si no existe
