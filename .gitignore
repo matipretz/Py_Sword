@@ -153,3 +153,4 @@ cython_debug/
 contrasenas.db
 contrasenas.sqlite
 reg
+retriver.py
