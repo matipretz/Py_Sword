@@ -4,29 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Contraseñas</title>
-    <style>
-        /* Estilos para el modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css" />
+    <link rel="stylesheet" href="../static/css/modal.css" />
+
+
 </head>
 <body>
     <h1>Contraseñas almacenadas</h1>
@@ -65,88 +46,7 @@
     </div>
     <br>
     <a href="/">Volver al inicio</a>
-    <script>
-        function togglePassword(button) {
-            const contrasenaInput = button.parentNode.previousElementSibling.querySelector('.contrasena-fila');
-            const tipoInput = contrasenaInput.type === 'password' ? 'text' : 'password';
-            contrasenaInput.type = tipoInput;
+    <script src="../static/js/scripts.js"></script>
 
-            // Habilita o deshabilita el botón de copiar según el estado del campo de contraseña
-            const copyButton = button.parentNode.querySelector('.copy-btn');
-            copyButton.disabled = tipoInput === 'password';
-        }
-
-        function copyToClipboard(button) {
-            const contrasenaInput = button.parentNode.previousElementSibling.querySelector('.contrasena-fila');
-
-            // Selecciona el texto en el campo de contraseña
-            contrasenaInput.select();
-            contrasenaInput.setSelectionRange(0, 99999); // Para dispositivos móviles
-
-            // Copia el texto al portapapeles
-            document.execCommand('copy');
-
-            // Deselecciona el texto para evitar confusiones visuales
-            window.getSelection().removeAllRanges();
-        }
-        function deleteRow(button) {
-            var id = button.getAttribute("data-id");
-
-            // Mostrar un mensaje de confirmación
-            var confirmacion = confirm("¿Estás seguro de que quieres borrar esta contraseña?");
-
-            if (confirmacion) {
-                fetch(`/borrar/${id}`, {
-                    method: 'DELETE',
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('No se pudo borrar la fila');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        alert(data.mensaje);
-                        location.reload();
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            } else {
-                // El usuario ha cancelado, no hacemos nada
-            }
-        } 
-        function habilitarEdicion(id) {
-            // Redirigir a la página de edición con el ID de la contraseña
-            window.location.href = `/editar/${id}`;
-        }
-
-        function abrirModal(id) {
-            var modal = document.getElementById('editarModal');
-            var iframe = document.getElementById('editarFrame');
-            
-            // Configuramos la URL del iframe
-            iframe.src = `/editar/${id}`;
-            
-            // Mostramos el modal
-            modal.style.display = 'block';
-        }
-
-        // Función para cerrar el modal
-        function cerrarModal() {
-            var modal = document.getElementById('editarModal');
-            var iframe = document.getElementById('editarFrame');
-
-            // Limpiamos la URL del iframe al cerrar el modal
-            iframe.src = 'about:blank';
-            location.reload();
-
-
-            // Ocultamos el modal
-            modal.style.display = 'none';
-        }
-
-
-    </script>
 </body>
 </html>

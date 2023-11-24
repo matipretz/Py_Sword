@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Almacenamiento de Contraseñas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css" />
 </head>
 <body>
     <h1>Almacenamiento de Contraseñas</h1>
@@ -28,33 +29,6 @@
     </form>
     <br>
     <a href="/ver">Ver Contraseñas</a>
-
-    <script>
-        function togglePassword() {
-            const contrasenaInput = document.getElementById('contrasena');
-            const tipoInput = contrasenaInput.type === 'password' ? 'text' : 'password';
-            contrasenaInput.type = tipoInput;
-        }
-        function generarContrasena() {
-            const longitud = document.getElementById('longitud').value;
-            const contrasenaInput = document.getElementById('contrasena');
-            const contrasenaGenerada = generarContrasenaAleatoria(longitud);
-            contrasenaInput.value = contrasenaGenerada;
-        }
-
-        function generarContrasenaAleatoria(longitud) {
-            const caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+";
-            let contrasena = '';
-            for (let i = 0; i < longitud; i++) {
-                const caracter = caracteres[Math.floor(Math.random() * caracteres.length)];
-                contrasena += caracter;
-            }
-            return contrasena;
-        }
-
-        document.getElementById('longitud').addEventListener('input', function () {
-            document.getElementById('valorLongitud').innerText = this.value;
-        });
-    </script>
+    <script src="../static/js/scripts.js"></script>
 </body>
 </html>
