@@ -99,7 +99,7 @@ function deleteRow(button) {
     } else {
         // El usuario ha cancelado, no hacemos nada
     }
-} 
+}
 function habilitarEdicion(id) {
     // Redirigir a la página de edición con el ID de la contraseña
     window.location.href = `/editar/${id}`;
@@ -108,10 +108,10 @@ function habilitarEdicion(id) {
 function abrirModal(id) {
     var modal = document.getElementById('editarModal');
     var iframe = document.getElementById('editarFrame');
-    
+
     // Configuramos la URL del iframe
     iframe.src = `/editar/${id}`;
-    
+
     // Mostramos el modal
     modal.style.display = 'block';
 }

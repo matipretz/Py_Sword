@@ -31,17 +31,17 @@
                 <button type="button" class="copy-btn" onclick="copyToClipboard(this)" disabled>Copiar</button>
                 <button type="button" class="delete-btn" data-id="{{ contrasena[0] }}"
                     onclick="deleteRow(this)">Borrar</button>
-                    <button onclick="abrirModal({{ contrasena[0] }})">Editar</button>
+                <button onclick="abrirModal({{ contrasena[0] }})">Editar</button>
 
             </td>
         </tr>
         {% endfor %}
     </table>
-    
+
     <div id="editarModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="cerrarModal()">&times;</span>
-            <iframe id="editarFrame" width="100%" height="400px" frameborder="0"></iframe>
+            <iframe id="editarFrame" width="100%" height="400px" frameborder="1"></iframe>
         </div>
     </div>
     <br>
