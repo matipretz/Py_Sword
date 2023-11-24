@@ -77,7 +77,7 @@ Al ejecutar este comando, el entorno virtual se desactivará, y volverás al ent
 
 Ahora, puedes ejecutar la aplicación:
 ```bash
-python app.py
+python wsgi.py
 ```
 Este comando iniciará la aplicación en el servidor local. Puedes acceder a ella desde tu navegador visitando http://127.0.0.1:5000/
 
