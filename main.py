@@ -88,25 +88,30 @@ def borrar_contrasena(id):
     return jsonify(mensaje)
 
 
-@app.route('/editar/<int:id>', methods=['GET', 'POST'])
+@app.route("/editar/<int:id>", methods=["GET", "POST"])
 def editar_contrasena(id):
-    if request.method == 'GET':
+    if request.method == "GET":
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
-        cursor.execute('SELECT id, servicio, usuario, contrasena FROM contrasenas WHERE id = ?', (id,))
+        cursor.execute(
+            "SELECT id, servicio, usuario, contrasena FROM contrasenas WHERE id = ?",
+            (id,),
+        )
         contrasena = cursor.fetchone()
         conn.close()
 
-        return render_template('editar.html', contrasena=contrasena)
-    elif request.method == 'POST':
-        nuevo_servicio = request.form['nuevo_servicio']
-        nuevo_usuario = request.form['nuevo_usuario']
-        nueva_contrasena = request.form['nueva_contrasena']
+        return render_template("editar.html", contrasena=contrasena)
+    elif request.method == "POST":
+        nuevo_servicio = request.form["nuevo_servicio"]
+        nuevo_usuario = request.form["nuevo_usuario"]
+        nueva_contrasena = request.form["nueva_contrasena"]
 
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
-        cursor.execute('UPDATE contrasenas SET servicio=?, usuario=?, contrasena=? WHERE id=?',
-                       (nuevo_servicio, nuevo_usuario, nueva_contrasena, id))
+        cursor.execute(
+            "UPDATE contrasenas SET servicio=?, usuario=?, contrasena=? WHERE id=?",
+            (nuevo_servicio, nuevo_usuario, nueva_contrasena, id),
+        )
         conn.commit()
         conn.close()
 

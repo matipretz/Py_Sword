@@ -11,10 +11,10 @@
     <form id="editarForm">
         <label for="nuevo_servicio">Servicio:</label>
         <input type="text" id="nuevo_servicio" name="nuevo_servicio" value="{{ contrasena[1] }}" required><br>
-        
+
         <label for="nuevo_usuario">Usuario:</label>
         <input type="text" id="nuevo_usuario" name="nuevo_usuario" value="{{ contrasena[2] }}" required><br>
-        
+
         <label for="nueva_contrasena">Contraseña:</label>
         <input type="password" id="nueva_contrasena" name="nueva_contrasena" value="{{ contrasena[3] }}" required><br>
 
@@ -34,19 +34,19 @@
                 },
                 body: `nuevo_servicio=${nuevo_servicio}&nuevo_usuario=${nuevo_usuario}&nueva_contrasena=${nueva_contrasena}`,
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('No se pudieron guardar los cambios');
-                }
-                return response.json();
-            })
-            .then(data => {
-                alert(data.mensaje);
-                location.reload();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudieron guardar los cambios');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert(data.mensaje);
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
     </script>
 </body>
