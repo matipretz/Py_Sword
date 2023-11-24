@@ -112,7 +112,3 @@ def editar_contrasena(id):
 
         mensaje = {"mensaje": f"Contraseña para '{nuevo_servicio}' editada con éxito"}
         return jsonify(mensaje)
-
-
-if __name__ == "__main__":
-    app.run()
