@@ -80,3 +80,4 @@ retriver.py
 .gitattributes
 .venv/
 *.pyc
+requirements.in
