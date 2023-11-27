@@ -2,11 +2,11 @@
 - [x] CRUD contraseñas
 - [ ] CRUD usuarios
 - [ ] AUTH
+- [ ] Verificaciones de formularios
+
 
 ### PAGINAS
-- [ ] Landing
-- [ ] Pagina de Sign-In
-- [ ] Pagina de Log-In
+- [ ] Pagina de Sign-In / Log-In
 - [X] Pagina de BD
 - [x] Modal editar contraseña
 - [ ] Pagina de About Us
@@ -17,4 +17,4 @@
 - [ ] Base de Datos: MySQL
 
 ### DEPLOY
-- [ ] PythonAnywhere
+- [ ] PythonAnywhereº
