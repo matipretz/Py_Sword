@@ -17,4 +17,7 @@
 - [ ] Base de Datos: MySQL
 
 ### DEPLOY
-- [ ] PythonAnywhereº
+- [ ] PythonAnywhere
+
+https://flask-login.readthedocs.io/en/latest/
+https://flask-admin.readthedocs.io/en/latest/
