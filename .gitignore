@@ -78,6 +78,7 @@ reg
 retriver.py
 .vscode
 .gitattributes
-.venv/
+**/venv310
 *.pyc
 requirements.in
+requirements_generator.py

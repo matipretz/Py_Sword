@@ -29,11 +29,11 @@ def crear_tabla():
 @app.route("/")
 def index():
     crear_tabla()
-    return render_template("index.html")
+    return render_template("sword/index.html")
 
 
 # Ruta para agregar contraseñas
-@app.route("/agregar", methods=["POST"])
+@app.route("sword/create", methods=["POST"])
 def agregar_contrasena():
     servicio = request.form["servicio"]
     usuario = request.form["usuario"]
@@ -51,7 +51,7 @@ def agregar_contrasena():
     conn.commit()
     conn.close()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("sword/index"))
 
 
 # Ruta para ver las contraseñas
@@ -117,3 +117,8 @@ def editar_contrasena(id):
 
         mensaje = {"mensaje": f"Contraseña para '{nuevo_servicio}' editada con éxito"}
         return jsonify(mensaje)
+
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
