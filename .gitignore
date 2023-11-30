@@ -81,5 +81,6 @@ retriver.py
 **/venv310
 *.pyc
 requirements.in
-requirements_generator.py
+reqgen.py
 app_prod.py
+todo.MD
