@@ -82,3 +82,4 @@ retriver.py
 *.pyc
 requirements.in
 requirements_generator.py
+app_prod.py

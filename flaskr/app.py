@@ -7,12 +7,10 @@ app = Flask(__name__)
 
 CORS(app)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://pysword:jwX.MYpAtVL0o7Rk@pysword.mysql.pythonanywhere-services.com/pysword$pysword_db'
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:@localhost/login"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-
-
 
 class Entrada(db.Model):
     id = db.Column(db.Integer, primary_key=True)
