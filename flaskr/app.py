@@ -1,124 +1,89 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
-import sqlite3, os
+from flask import Flask, jsonify, request
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
 
-# Configuración de la base de datos
-DATABASE = "contrasenas.sqlite"
-port = int(os.environ.get("PORT", 5000))
+CORS(app)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://pysword:jwX.MYpAtVL0o7Rk@pysword.mysql.pythonanywhere-services.com/pysword$pysword_db'
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db = SQLAlchemy(app)
+ma = Marshmallow(app)
 
 
-def crear_tabla():
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        CREATE TABLE IF NOT EXISTS contrasenas (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            servicio TEXT NOT NULL,
-            usuario TEXT NOT NULL,
-            contrasena TEXT NOT NULL
-        )
-    """
-    )
-    conn.commit()
-    conn.close()
 
+class Entrada(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    servicio = db.Column(db.String(50))
+    usuario = db.Column(db.String(50))
+    contrasena = db.Column(db.String(50))
 
-# Ruta principal
-@app.route("/")
-def index():
-    crear_tabla()
-    return render_template("sword/index.html")
+    def __init__(self, servicio, usuario, contrasena):
+        self.servicio = servicio
+        self.usuario = usuario
+        self.contrasena = contrasena
 
+with app.app_context():
+    db.create_all()
 
-# Ruta para agregar contraseñas
-@app.route("sword/create", methods=["POST"])
-def agregar_contrasena():
-    servicio = request.form["servicio"]
-    usuario = request.form["usuario"]
-    contrasena = request.form["contrasena"]
+# Definición del esquema para la clase Producto
+class EntradaSchema(ma.Schema):
+    class Meta:
+        fields = ("id", "servicio", "usuario", "contrasena")
 
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        INSERT INTO contrasenas (servicio, usuario, contrasena)
-        VALUES (?, ?, ?)
-    """,
-        (servicio, usuario, contrasena),
-    )
-    conn.commit()
-    conn.close()
+entrada_schema = EntradaSchema()  # Objeto para serializar/deserializar un producto
+entradas_schema = EntradaSchema(
+    many=True
+)  # Objeto para serializar/deserializar múltiples productos
 
-    return redirect(url_for("sword/index"))
+@app.route("/entradas", methods=["GET"])
+def get_Entradas():
+    all_entradas = (
+        Entrada.query.all()
+    )  # Obtiene todos los registros de la tabla de entradas
+    result = entradas_schema.dump(
+        all_entradas
+    )  # Serializa los registros en formato JSON
+    return jsonify(result)  # Retorna el JSON de todos los registros de la tabla
 
+@app.route("/entradas/<id>", methods=["GET"])
+def get_entrada(id):
+    entrada = Entrada.query.get(id)  # Obtiene la entrada correspondiente al ID recibido
+    return entrada_schema.jsonify(entrada)  # Retorna el JSON
 
-# Ruta para ver las contraseñas
-@app.route("/ver")
-def ver_contrasenas():
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
-    cursor.execute("SELECT id, servicio, usuario, contrasena FROM contrasenas")
-    contrasenas = cursor.fetchall()
-    conn.close()
+@app.route("/entradas/<id>", methods=["DELETE"])
+def delete_entrada(id):
+    producto = Entrada.query.get(id)
+    db.session.delete(producto)  # Elimina
+    db.session.commit()  # Guarda los cambios en la base de datos
+    return entrada_schema.jsonify(producto)  # Retorna el JSON
 
-    return render_template("ver.html", contrasenas=contrasenas)
+@app.route("/entradas", methods=["POST"])  # Endpoint para crear una entrada
+def create_entradas():
+    servicio = request.json["servicio"]
+    usuario = request.json["usuario"]
+    contrasena = request.json["contrasena"]
+    new_entrada = Entrada(
+        servicio, usuario, contrasena
+    )  # Crea un nuevo objeto Entrada con los datos proporcionados
+    db.session.add(
+        new_entrada
+    )  # Agrega la nueva entrada a la sesión de la base de datos
+    db.session.commit()  # Guarda los cambios en la base de datos
+    return entrada_schema.jsonify(
+        new_entrada
+    )  # Retorna el JSON de la nueva entrada creada
 
-
-# Ruta para eliminar contraseñas
-@app.route("/borrar/<int:id>", methods=["DELETE"])
-def borrar_contrasena(id):
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
-
-    # Obtener el nombre del servicio antes de borrar la contraseña
-    cursor.execute("SELECT servicio FROM contrasenas WHERE id = ?", (id,))
-    nombre_servicio = cursor.fetchone()[0]
-
-    # Borrar la contraseña
-    cursor.execute("DELETE FROM contrasenas WHERE id = ?", (id,))
-    conn.commit()
-    conn.close()
-
-    # Devolver un mensaje de éxito en formato JSON con el nombre del servicio
-    mensaje = {
-        "mensaje": f"La contraseña para '{nombre_servicio}' fue borrada con éxito"
-    }
-    return jsonify(mensaje)
-
-
-@app.route("/editar/<int:id>", methods=["GET", "POST"])
-def editar_contrasena(id):
-    if request.method == "GET":
-        conn = sqlite3.connect(DATABASE)
-        cursor = conn.cursor()
-        cursor.execute(
-            "SELECT id, servicio, usuario, contrasena FROM contrasenas WHERE id = ?",
-            (id,),
-        )
-        contrasena = cursor.fetchone()
-        conn.close()
-
-        return render_template("editar.html", contrasena=contrasena)
-    elif request.method == "POST":
-        nuevo_servicio = request.form["nuevo_servicio"]
-        nuevo_usuario = request.form["nuevo_usuario"]
-        nueva_contrasena = request.form["nueva_contrasena"]
-
-        conn = sqlite3.connect(DATABASE)
-        cursor = conn.cursor()
-        cursor.execute(
-            "UPDATE contrasenas SET servicio=?, usuario=?, contrasena=? WHERE id=?",
-            (nuevo_servicio, nuevo_usuario, nueva_contrasena, id),
-        )
-        conn.commit()
-        conn.close()
-
-        mensaje = {"mensaje": f"Contraseña para '{nuevo_servicio}' editada con éxito"}
-        return jsonify(mensaje)
-
-
+@app.route("/entradas/<id>", methods=["PUT"])  # Endpoint para actualizar
+def update_entrada(id):
+    entrada = Entrada.query.get(id)
+    servicio = request.json["servicio"]
+    usuario = request.json["usuario"]
+    contrasena = request.json["contrasena"]
+    db.session.commit()  # Guarda los cambios en la base de datos
+    return entrada_schema.jsonify(entrada)  # Retorna el JSON del producto actualizado
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
