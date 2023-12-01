@@ -26,7 +26,7 @@ class Entrada(db.Model):
 with app.app_context():
     db.create_all()
 
-# Definición del esquema para la clase Producto
+# Definición del esquema para la clase Entrada
 class EntradaSchema(ma.Schema):
     class Meta:
         fields = ("id", "servicio", "usuario", "contrasena")
@@ -34,9 +34,9 @@ class EntradaSchema(ma.Schema):
 entrada_schema = EntradaSchema()  # Objeto para serializar/deserializar un producto
 entradas_schema = EntradaSchema(
     many=True
-)  # Objeto para serializar/deserializar múltiples productos
+)  # Objeto para serializar/deserializar múltiples entradas
 
-@app.route("/entradas", methods=["GET"])
+@app.route("/ver", methods=["GET"])
 def get_Entradas():
     all_entradas = (
         Entrada.query.all()
@@ -46,19 +46,19 @@ def get_Entradas():
     )  # Serializa los registros en formato JSON
     return jsonify(result)  # Retorna el JSON de todos los registros de la tabla
 
-@app.route("/entradas/<id>", methods=["GET"])
+@app.route("/ver/<id>", methods=["GET"])
 def get_entrada(id):
     entrada = Entrada.query.get(id)  # Obtiene la entrada correspondiente al ID recibido
     return entrada_schema.jsonify(entrada)  # Retorna el JSON
 
-@app.route("/entradas/<id>", methods=["DELETE"])
+@app.route("/ver/<id>", methods=["DELETE"])
 def delete_entrada(id):
     producto = Entrada.query.get(id)
     db.session.delete(producto)  # Elimina
     db.session.commit()  # Guarda los cambios en la base de datos
     return entrada_schema.jsonify(producto)  # Retorna el JSON
 
-@app.route("/entradas", methods=["POST"])  # Endpoint para crear una entrada
+@app.route("/create", methods=["POST"])  # Endpoint para crear una entrada
 def create_entradas():
     servicio = request.json["servicio"]
     usuario = request.json["usuario"]
@@ -74,7 +74,7 @@ def create_entradas():
         new_entrada
     )  # Retorna el JSON de la nueva entrada creada
 
-@app.route("/entradas/<id>", methods=["PUT"])  # Endpoint para actualizar
+@app.route("/ver/<id>", methods=["PUT"])  # Endpoint para actualizar
 def update_entrada(id):
     entrada = Entrada.query.get(id)
     servicio = request.json["servicio"]
