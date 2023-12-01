@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `user`;
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
@@ -7,9 +8,10 @@ CREATE TABLE `users` (
   `password_hash` VARCHAR(128) NULL DEFAULT NULL
 );
 
+DROP TABLE IF EXISTS `entrada`;
 DROP TABLE IF EXISTS `entradas`;
 
-CREATE TABLE `entradas` (
+CREATE TABLE `entrada` (
   `id` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `servicio` VARCHAR(64) NULL DEFAULT NULL,
   `usuario` VARCHAR(120) NULL DEFAULT NULL,
