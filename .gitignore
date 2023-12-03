@@ -86,3 +86,4 @@ app_prod.py
 app_dev.py
 todo.MD
 **/src
+**/legacy

@@ -19,6 +19,8 @@ CREATE TABLE contrasenas (
 );
 
 
+
+
 --.TEST DATA
 
 INSERT INTO usuarios (fullname, mail, password) VALUES
@@ -30,3 +32,16 @@ INSERT INTO contrasenas (fullname, mail, password,id_users) VALUES
   ('Juan Perez', 'juan@example.com', 'clave123','1'),
   ('Ana Rodriguez', 'ana@example.com', 'secreto456','1'),
   ('Carlos Lopez', 'carlos@example.com', 'password789','2');
+
+
+--. QUERY
+
+sql = "INSERT INTO usuarios (fullname, mail, password) VALUES (%s, %s, %s);"
+data = (name, email, password)
+
+conn = mysql.connect
+cursor = conn.cursor()
+
+try:
+    cursor.execute(sql, data)
+    conn.commit()
