@@ -86,7 +86,7 @@ Este comando iniciará la aplicación en el servidor local. Puedes acceder a ell
 - [Carolina Cuello Luna](https://www.linkedin.com/in/carolina-cuello-luna-982035233/)
 
 ## Links:
-- [Contacto](mailto:mati.pretz+dev@googlemail.com?subject=[Py_Sword])
+- [Contacto](mailto:mati.pretz+py_sword@googlemail.com?subject=[Py_Sword])
 - [Repositorio](https://github.com/matipretz/Py_Sword)
 - [App](http://pysword.pythonanywhere.com/)
 

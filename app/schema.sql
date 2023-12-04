@@ -26,12 +26,12 @@ CREATE TABLE contrasenas (
 INSERT INTO usuarios (fullname, mail, password) VALUES
   ('Juan Perez', 'juan@example.com', 'clave123'),
   ('Ana Rodriguez', 'ana@example.com', 'secreto456'),
-  ('Carlos Lopez', 'carlos@example.com', 'password789');
+  ('TEST_USER', 'test@test.com', 'test');
 
 INSERT INTO contrasenas (servicio, usuario, contrasena,id_users) VALUES
-  ('Juan Perez', 'juan@example.com', 'clave123','10'),
-  ('Ana Rodriguez', 'ana@example.com', 'secreto456','12'),
-  ('Carlos Lopez', 'carlos@example.com', 'password789','12');
+  ('Spotify', 'juan@example.com', 'clave123','16'),
+  ('YouTube', 'ana@example.com', 'secreto456','16'),
+  ('Netflix', 'carlos@example.com', 'password789','16');
 
 
 --. QUERY
