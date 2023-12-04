@@ -17,12 +17,13 @@ app = Flask(
 app.secret_key = "password1234"
 
 
-app.config["MYSQL_HOST"] = "pysword.mysql.pythonanywhere-services.com"
-app.config["MYSQL_USER"] = "pysword"
-app.config["MYSQL_PASSWORD"] = "wX.MYpAtVL0o7Rk"
+app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = ""
 app.config["MYSQL_DB"] = "pysword$pysword_db"
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 mysql = MySQL(app)
+
 
 @app.route("/")
 def inicio():
@@ -183,7 +184,7 @@ def delete_entrada(id):
             conn.commit()
             cursor.close()
             if entrada:
-                return entrada
+                return redirect(url_for("ver"))
             else:
                 abort(404)  # Página no encontrada
         except Exception as e:
@@ -210,8 +211,12 @@ def obtener_contrasena(id):
         except Exception as e:
             print(f"Error al obtener los datos: {str(e)}")
             abort(500)
-            
-@app.route("/editar/<int:id>", methods=["PUT"])
+
+
+from flask import redirect, url_for
+
+
+@app.route("/editar/<int:id>", methods=["POST"])
 def editar_contrasena(id):
     if "logueado" in session and session["logueado"]:
         try:
@@ -219,20 +224,19 @@ def editar_contrasena(id):
             nuevo_usuario = request.form["nuevo_usuario"]
             nueva_contrasena = request.form["nueva_contrasena"]
             conn = mysql.connect
-            cursor = conn.cursor()
-            cursor.execute(
+            cur = conn.cursor()
+            cur.execute(
                 "UPDATE contrasenas SET servicio=%s, usuario=%s, contrasena=%s WHERE id=%s",
                 (nuevo_servicio, nuevo_usuario, nueva_contrasena, id),
             )
-            mysql.connect.commit()
+            conn.commit()
             mysql.connect.close()
         except Exception as e:
             print(f"Error al obtener los datos: {str(e)}")
             abort(500)
-        mensaje = {"mensaje": f"Contraseña para '{nuevo_servicio}' editada con éxito"}
-        return jsonify(mensaje)
+        return redirect(url_for("ver"))
     else:
-        abort(403)  # Prohibido: el usuario no está logueado
+        abort(403)
 
 
 if __name__ == "__main__":

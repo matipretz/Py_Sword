@@ -47,3 +47,17 @@ cursor = conn.cursor()
 try:
     cursor.execute(sql, data)
     conn.commit()
+
+app.config["MYSQL_HOST"] = "pysword.mysql.pythonanywhere-services.com"
+app.config["MYSQL_USER"] = "pysword"
+app.config["MYSQL_PASSWORD"] = "wX.MYpAtVL0o7Rk"
+app.config["MYSQL_DB"] = "pysword$pysword_db"
+app.config["MYSQL_CURSORCLASS"] = "DictCursor"
+mysql = MySQL(app)
+
+app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = ""
+app.config["MYSQL_DB"] = "pysword$pysword_db"
+app.config["MYSQL_CURSORCLASS"] = "DictCursor"
+mysql = MySQL(app)

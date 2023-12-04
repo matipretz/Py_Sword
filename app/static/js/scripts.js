@@ -24,40 +24,6 @@ document.getElementById('longitud').addEventListener('input', function () {
     document.getElementById('valorLongitud').innerText = this.value;
 });
 
-function guardarCambios(id) {
-    var nuevo_servicio = document.getElementById("nuevo_servicio").value;
-    var nuevo_usuario = document.getElementById("nuevo_usuario").value;
-    var nueva_contrasena = document.getElementById("nueva_contrasena").value;
-
-    fetch(`/editar/${id}`, {
-        method: 'PUT',  
-        headers: {
-            'Content-Type': 'text/html; charset=utf-8',  
-        },
-        body: JSON.stringify({
-            nuevo_servicio: nuevo_servicio,
-            nuevo_usuario: nuevo_usuario,
-            nueva_contrasena: nueva_contrasena,
-        }),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`No se pudieron guardar los cambios. ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        alert(data.mensaje);
-        location.reload();
-        cerrarModal();  
-    })
-    .catch(error => {
-        console.error('Error al guardar los cambios:', error.message);
-    });
-}
-
-
-
 function togglePassword(button) {
     const contrasenaInput = button.parentNode.previousElementSibling.querySelector('.contrasena-fila');
     const tipoInput = contrasenaInput.type === 'password' ? 'text' : 'password';
