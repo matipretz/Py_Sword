@@ -160,10 +160,10 @@ def get_entrada(id):
             if entrada:
                 return entrada
             else:
-                abort(404)  # Página no encontrada
+                abort(404)  
         except Exception as e:
             print(f"Error al obtener entrada desde la base de datos: {str(e)}")
-            abort(403)  # Error interno del servidor
+            abort(403)  
     else:
         return redirect(url_for("index"))
 
@@ -186,15 +186,15 @@ def delete_entrada(id):
             if entrada:
                 return redirect(url_for("ver"))
             else:
-                abort(404)  # Página no encontrada
+                abort(404) 
         except Exception as e:
             print(f"Error al borrar entrada desde la base de datos: {str(e)}")
-            abort(500)  # Error interno del servidor
+            abort(500)  
     else:
-        abort(403)  # Prohibido: el usuario no está logueado
+        abort(403)  
 
 
-@app.route("/editar/<int:id>", methods=["GET"])
+@app.route("/editar/<int:id>", methods=["GET"]) # type:ignore
 def obtener_contrasena(id):
     if "logueado" in session and session["logueado"]:
         try:
@@ -211,10 +211,6 @@ def obtener_contrasena(id):
         except Exception as e:
             print(f"Error al obtener los datos: {str(e)}")
             abort(500)
-
-
-from flask import redirect, url_for
-
 
 @app.route("/editar/<int:id>", methods=["POST"])
 def editar_contrasena(id):
