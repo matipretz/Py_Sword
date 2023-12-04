@@ -46,8 +46,8 @@ def login():
     cur.execute(
         "SELECT * FROM usuarios WHERE mail = %s AND password = %s",
         (
-            _email,
-            _password,
+            _email,# type:ignore
+            _password,# type:ignore
         ),
     )
     account = cur.fetchone()
@@ -103,7 +103,7 @@ def ver_page():
     return render_template("home.html")
 
 
-@app.route("/ver", methods=["GET", "POST"])
+@app.route("/ver", methods=["GET", "POST"])# type:ignore
 def ver():
     if "logueado" in session and session["logueado"]:
         user_id = session.get("user_id")
@@ -124,7 +124,7 @@ def create_page():
     return render_template("crear.html")
 
 
-@app.route("/agregar", methods=["POST"])  # Endpoint para crear una entrada
+@app.route("/agregar", methods=["POST"])  # type:ignore
 def create_entradas():
     if "logueado" in session and session["logueado"]:
         user_id = session.get("user_id")
