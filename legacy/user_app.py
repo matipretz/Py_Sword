@@ -39,8 +39,8 @@ def login():
     cur.execute(
         "SELECT * FROM usuarios WHERE mail = %s AND password = %s",
         (
-            _email,
-            _password,
+            _email,# type: ignore
+            _password,# type: ignore
         ),
     )
     account = cur.fetchone()

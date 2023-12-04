@@ -1,65 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-        <link rel="stylesheet" href="../static/css/login.css">
-    <title>Inicio</title>
-</head>
-<header>
-    <ul class="nav nav-underline">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Py Sword</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/">Inicio</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="registro">Registrarse</a>
-        </li>
-    </ul>
-</header>
-<body>
+    <title>Ingresar</title>
+    <!--FAVICON-->
+    {% include 'favicon.html' %}
+  </head>
+  <!--MENÚ DE NAVEGACÓN-->
+  <body>
+    <!--MENÚ DE NAVEGACÓN-->
+    {% include 'nav.html' %}
 
     <!-- INICIO DE FORMULARIO -->
 
     <div class="form">
-        <form class="form-control" action="acceso-login" method="post">
-            <!-- TITULO DE FORMULARIO LOGIN -->
-            <h1 class="title">Ingresar</h1>
-            <!-- ALERTA CONTRASEÑA O USUARIO INCORRECTO-->
-            {% if mensaje %}
-            <div class="alert alert-danger" role="alert">{{ mensaje}}</div>
-            {% endif %}
-            <!-- ALERTA DE REGISTRO EXITOSO-->
-            {% if mensaje2 %}
-            <div class="alert alert-success" role="alert">{{ mensaje2}}</div>
-            {% endif %}
+      <form class="form-control" action="acceso-login" method="POST">
+        <!-- TITULO DE FORMULARIO LOGIN -->
+        <h1 class="title">Ingrese a su Usuario</h1>
+        <!-- ALERTA CONTRASEÑA O USUARIO INCORRECTO-->
+        {% if mensaje %}
+        <div class="alert alert-danger" role="alert">{{ mensaje}}</div>
+        {% endif %}
+        <!-- ALERTA DE REGISTRO EXITOSO-->
+        {% if mensaje2 %}
+        <div class="alert alert-success" role="alert">{{ mensaje2}}</div>
+        {% endif %}
 
-            <div class="form-group">
-                <label for="exampleInputEmail1 " class="t text-center">Correo</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Ingrese su Correo Electrónico " name="txtEmail" />
-                <small id="emailHelp" class="form-text text-muted"></small>
-            </div>
-            <br />
+        <div class="form-group">
+          <label for="exampleInputEmail1 " class="t text-center">Correo</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Ingrese su Correo Electrónico "
+            name="txtEmail"
+          />
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+        <br />
 
-            <div class="form-group">
-                <label for="exampleInputPassword1 " class="t text-center">Contraseña</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"
-                    placeholder="Ingrese su Contraseña" name="txtPassword" />
-            </div>
-            <div class="form-check"></div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Ingresar</button>
-            </div>
-            <br />
-            <div class="text-center">
-                <a class="btn btn-success" href="registro" role="button">Crear Cuenta Nueva</a>
-            </div>
-        </form>
+        <div class="form-group">
+          <label for="exampleInputPassword1 " class="t text-center"
+            >Contraseña</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Ingrese su Contraseña"
+            name="txtPassword"
+          />
+        </div>
+        <div class="form-check"></div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Ingresar</button>
+        </div>
+        <br />
+        <div class="text-center">
+          <a class="btn btn-success" href="registro" role="button"
+            >Crear Cuenta Nueva</a
+          >
+        </div>
+      </form>
     </div>
-</body>
+    <!--FOOTER-->
+    {% include 'footer.html' %}
+    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+  </body>
 </html>

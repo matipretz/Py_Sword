@@ -20,87 +20,12 @@ def index():
 @app.route("/home")
 def home():
     cur = mysql.connect.cursor()
-    cur.execute("SELECT id, servicio, usuario, contrasena FROM contrasenas")
+    cur.execute("SELECT id, servicio, usuario, contrasena FROM contrasenas WHERE id_users = ?", (session,))
     contrasenas = cur.fetchall()
     mysql.connect.close()
     return render_template("home.html", contrasenas=contrasenas)
 
-# LOG-IN
 
-@app.route("/acceso-login", methods=["GET", "POST"])
-def login():
-    if "txtEmail" in request.form and "txtPassword" in request.form:
-        _email = request.form["txtEmail"]
-        _password = request.form["txtPassword"]
-
-        cur = mysql.connect.cursor()
-        cur.execute(
-            "SELECT id, fullname FROM usuarios WHERE mail = %s AND password = %s",
-            (_email, _password),
-        )
-        user = cur.fetchone()
-
-        if user:
-            # Autenticación exitosa, almacenar el id del usuario en la sesión
-            session["logueado"] = True
-            session["id_usuario"] = user["id"]
-            session["fullname"] = user["fullname"]
-            return render_template("home.html")
-        else:
-            return render_template(
-                "login.html", mensaje="Usuario o Contraseña Incorrectas"
-            )
-
-
-# CERRAR SESIÓN
-@app.route("/logout")
-def logout():
-    session.clear()
-    return redirect(url_for("index"))
-
-
-# REGISTRO
-@app.route("/registro")
-def registro():
-    return render_template("user_create.html")
-# SING-IN
-@app.route("/crear-registro", methods=["GET", "POST"])
-def user_create():
-    name = request.form["txtFullname"]
-    email = request.form["txtEmail"]
-    password = request.form["txtPassword"]
-
-    cur = mysql.connect.cursor()
-    cur.execute(
-        "INSERT INTO usuarios(fullname, mail, password) VALUES (%s, %s, %s)",
-        (name, email, password),
-    )
-    mysql.connect.commit()
-
-    return render_template("home.html", mensaje2="Usuario Registrado Exitosamente")
-    ## A FUTURO: PEDIR VALIDACION POR MAIL
-    
-    # ACTUALIZAR USUARIOS
-@app.route("/actualizar")
-def editar():
-    return render_template("user_update.html")
-
-
-@app.route("/actualizar-registro", methods=["GET", "POST"])
-def editar_registro(id_usuario):
-    if session["logueado"] == True:
-        name = request.form["txtFullname"]
-        email = request.form["txtEmail"]
-        password = request.form["txtPassword"]
-
-        cur = mysql.connect.cursor()
-        cur.execute(
-            "UPDATE usuarios SET fullname = %s, mail = %s, password = %s WHERE id_usuario = %s",
-            (name, email, password, id_usuario),
-        )
-    mysql.connect.commit()
-
-    return render_template("home.html", mensaje3="Usuario Modificado Exitosamente")
 
 
 

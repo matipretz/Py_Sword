@@ -28,10 +28,10 @@ INSERT INTO usuarios (fullname, mail, password) VALUES
   ('Ana Rodriguez', 'ana@example.com', 'secreto456'),
   ('Carlos Lopez', 'carlos@example.com', 'password789');
 
-INSERT INTO contrasenas (fullname, mail, password,id_users) VALUES
-  ('Juan Perez', 'juan@example.com', 'clave123','1'),
-  ('Ana Rodriguez', 'ana@example.com', 'secreto456','1'),
-  ('Carlos Lopez', 'carlos@example.com', 'password789','2');
+INSERT INTO contrasenas (servicio, usuario, contrasena,id_users) VALUES
+  ('Juan Perez', 'juan@example.com', 'clave123','10'),
+  ('Ana Rodriguez', 'ana@example.com', 'secreto456','12'),
+  ('Carlos Lopez', 'carlos@example.com', 'password789','12');
 
 
 --. QUERY

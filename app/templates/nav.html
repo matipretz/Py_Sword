@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--CÓDIGO PARA ENLAZAR BOOSTRAP-->
+        <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous"
+      />
+    <title>Document</title>
+</head>
+<body>
+    <!--CÓDIGO PARA ENLAZAR ESTILOS-->
+    {% block CustomCSS%}
+              <link
+                rel="stylesheet"
+                href="{{url_for('static', filename='css/login.css')}}"
+              />
+              {%endblock%}
+    <header> 
+        <ul class="nav nav-underline">
+          <a class="navbar-logo" href="py_sword.html">
+            <img src="{{url_for('static', filename='img/logo_py_sword.png')}}" alt="Logo">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Py Sword</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="registro">Registrarse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="index">Ingresar</a>
+          </li>
+        </ul>
+    </header>
+  
+</body>
+</html>
