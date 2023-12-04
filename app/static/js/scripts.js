@@ -30,26 +30,34 @@ function guardarCambios(id) {
     var nueva_contrasena = document.getElementById("nueva_contrasena").value;
 
     fetch(`/editar/${id}`, {
-        method: 'POST',
+        method: 'PUT',  
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'text/html; charset=utf-8',  
         },
-        body: `nuevo_servicio=${nuevo_servicio}&nuevo_usuario=${nuevo_usuario}&nueva_contrasena=${nueva_contrasena}`,
+        body: JSON.stringify({
+            nuevo_servicio: nuevo_servicio,
+            nuevo_usuario: nuevo_usuario,
+            nueva_contrasena: nueva_contrasena,
+        }),
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('No se pudieron guardar los cambios');
-            }
-            return response.json();
-        })
-        .then(data => {
-            alert(data.mensaje);
-            location.reload();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`No se pudieron guardar los cambios. ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert(data.mensaje);
+        location.reload();
+        cerrarModal();  
+    })
+    .catch(error => {
+        console.error('Error al guardar los cambios:', error.message);
+    });
 }
+
+
+
 function togglePassword(button) {
     const contrasenaInput = button.parentNode.previousElementSibling.querySelector('.contrasena-fila');
     const tipoInput = contrasenaInput.type === 'password' ? 'text' : 'password';
@@ -108,24 +116,11 @@ function habilitarEdicion(id) {
 function abrirModal(id) {
     var modal = document.getElementById('editarModal');
     var iframe = document.getElementById('editarFrame');
-
-    // Configuramos la URL del iframe
     iframe.src = `/editar/${id}`;
-
-    // Mostramos el modal
     modal.style.display = 'block';
 }
 
-// Función para cerrar el modal
 function cerrarModal() {
     var modal = document.getElementById('editarModal');
-    var iframe = document.getElementById('editarFrame');
-
-    // Limpiamos la URL del iframe al cerrar el modal
-    iframe.src = 'about:blank';
-    location.reload();
-
-
-    // Ocultamos el modal
     modal.style.display = 'none';
 }

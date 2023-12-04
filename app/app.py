@@ -1,5 +1,14 @@
 from flask import Flask
-from flask import render_template, request, redirect, url_for, session, flash
+from flask import (
+    render_template,
+    request,
+    redirect,
+    url_for,
+    session,
+    flash,
+    abort,
+    jsonify,
+)
 from flask_mysqldb import MySQL
 
 
@@ -46,8 +55,8 @@ def login():
     cur.execute(
         "SELECT * FROM usuarios WHERE mail = %s AND password = %s",
         (
-            _email,# type:ignore
-            _password,# type:ignore
+            _email,  # type:ignore
+            _password,  # type:ignore
         ),
     )
     account = cur.fetchone()
@@ -103,7 +112,7 @@ def ver_page():
     return render_template("home.html")
 
 
-@app.route("/ver", methods=["GET", "POST"])# type:ignore
+@app.route("/ver", methods=["GET", "POST"])  # type:ignore
 def ver():
     if "logueado" in session and session["logueado"]:
         user_id = session.get("user_id")
@@ -140,6 +149,99 @@ def create_entradas():
             cursor.execute(query, values)
             conn.commit()
             return redirect(url_for("ver"))
+
+
+@app.route("/ver/<int:id>", methods=["GET"])
+def get_entrada(id):
+    if "logueado" in session and session["logueado"]:
+        user_id = session.get("user_id")
+        try:
+            conn = mysql.connect
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT * FROM contrasenas WHERE id = %s AND id_users = %s",
+                (id, user_id),
+            )
+            entrada = cursor.fetchone()
+            cursor.close()
+
+            if entrada:
+                return entrada
+            else:
+                abort(404)  # Página no encontrada
+        except Exception as e:
+            print(f"Error al obtener entrada desde la base de datos: {str(e)}")
+            abort(403)  # Error interno del servidor
+    else:
+        return redirect(url_for("index"))
+
+
+from flask import abort, redirect, url_for
+
+
+@app.route("/borrar/<int:id>", methods=["DELETE"])
+def delete_entrada(id):
+    if "logueado" in session and session["logueado"]:
+        user_id = session.get("user_id")
+        try:
+            conn = mysql.connect
+            cursor = conn.cursor()
+            entrada = cursor.execute(
+                "DELETE FROM contrasenas WHERE id = %s AND id_users = %s", (id, user_id)
+            )
+            conn.commit()
+            cursor.close()
+            if entrada:
+                return entrada
+            else:
+                abort(404)  # Página no encontrada
+        except Exception as e:
+            print(f"Error al borrar entrada desde la base de datos: {str(e)}")
+            abort(500)  # Error interno del servidor
+    else:
+        abort(403)  # Prohibido: el usuario no está logueado
+
+
+@app.route("/editar/<int:id>", methods=["GET"])
+def obtener_contrasena(id):
+    if "logueado" in session and session["logueado"]:
+        try:
+            conn = mysql.connect
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT id, servicio, usuario, contrasena FROM contrasenas WHERE id = %s",
+                (id,),
+            )
+
+            contrasena = cursor.fetchone()
+            cursor.close()
+            return render_template("update.html", contrasena=contrasena)
+        except Exception as e:
+            print(f"Error al obtener los datos: {str(e)}")
+            abort(500)
+            
+@app.route("/editar/<int:id>", methods=["PUT"])
+def editar_contrasena(id):
+    if "logueado" in session and session["logueado"]:
+        try:
+            nuevo_servicio = request.form["nuevo_servicio"]
+            nuevo_usuario = request.form["nuevo_usuario"]
+            nueva_contrasena = request.form["nueva_contrasena"]
+            conn = mysql.connect
+            cursor = conn.cursor()
+            cursor.execute(
+                "UPDATE contrasenas SET servicio=%s, usuario=%s, contrasena=%s WHERE id=%s",
+                (nuevo_servicio, nuevo_usuario, nueva_contrasena, id),
+            )
+            mysql.connect.commit()
+            mysql.connect.close()
+        except Exception as e:
+            print(f"Error al obtener los datos: {str(e)}")
+            abort(500)
+        mensaje = {"mensaje": f"Contraseña para '{nuevo_servicio}' editada con éxito"}
+        return jsonify(mensaje)
+    else:
+        abort(403)  # Prohibido: el usuario no está logueado
 
 
 if __name__ == "__main__":
