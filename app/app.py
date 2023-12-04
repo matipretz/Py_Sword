@@ -5,7 +5,6 @@ from flask import (
     redirect,
     url_for,
     session,
-    flash,
     abort,
     jsonify,
 )
@@ -18,22 +17,18 @@ app = Flask(
 app.secret_key = "password1234"
 
 
-# CONEXION A LA BASE DE DATOS
-app.config["MYSQL_HOST"] = "localhost"
-app.config["MYSQL_USER"] = "root"
-app.config["MYSQL_PASSWORD"] = ""
+app.config["MYSQL_HOST"] = "pysword.mysql.pythonanywhere-services.com"
+app.config["MYSQL_USER"] = "pysword"
+app.config["MYSQL_PASSWORD"] = "wX.MYpAtVL0o7Rk"
 app.config["MYSQL_DB"] = "pysword$pysword_db"
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 mysql = MySQL(app)
 
-
-# INICIO
 @app.route("/")
 def inicio():
     return render_template("py_sword.html")
 
 
-# INGRESAR
 @app.route("/index")
 def index():
     return render_template("index.html")
@@ -60,7 +55,6 @@ def login():
         ),
     )
     account = cur.fetchone()
-    # COMPROBACIÓN DEL LOGEO
     if account:
         session["logueado"] = True
         session["fullname"] = account["fullname"]
@@ -71,14 +65,12 @@ def login():
         return render_template("index.html", mensaje="Usuario o Contraseña Incorrecta")
 
 
-# CERRAR SESIÓN
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("py_sword"))
 
 
-# REGISTRO
 @app.route("/registro")
 def registro():
     return render_template("registro.html")
@@ -101,7 +93,6 @@ def crear_registro():
     return render_template("index.html", mensaje2="Usuario Registrado Exitosamente")
 
 
-# PAGINA INFORMACION
 @app.route("/py_sword")
 def py_sword():
     return render_template("py_sword.html")
