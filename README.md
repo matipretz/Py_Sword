@@ -65,6 +65,30 @@ Con el entorno virtual activado, ahora puedes instalar las dependencias desde el
 ```bash
 pip install -r requirements.txt
 ```
+Y con tu cliente SQL preferido, solo queda crear la base de datos:
+```SQL
+CREATE DATABASE pysword$pysword_db;
+
+DROP TABLE IF EXISTS `contrasenas`;
+DROP TABLE IF EXISTS `usuarios`;
+
+CREATE TABLE `usuarios` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `fullname` VARCHAR(64) NULL DEFAULT NULL,
+  `mail` VARCHAR(120) NULL DEFAULT NULL,
+  `password` VARCHAR(128) NULL DEFAULT NULL
+);
+
+
+CREATE TABLE contrasenas (
+  id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  servicio VARCHAR(64) NULL DEFAULT NULL,
+  usuario VARCHAR(120) NULL DEFAULT NULL,
+  contrasena VARCHAR(128) NULL DEFAULT NULL,
+  id_users INTEGER NULL DEFAULT NULL,
+  FOREIGN KEY (id_users) REFERENCES usuarios (id)
+);
+```
 Asegúrate de que estás en la misma carpeta que tu archivo requirements.txt cuando ejecutas este comando.
 
 Recuerda que es una buena práctica desactivar el entorno virtual cuando hayas terminado de trabajar en tu proyecto:

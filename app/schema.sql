@@ -1,3 +1,5 @@
+CREATE DATABASE pysword$pysword_db;
+
 DROP TABLE IF EXISTS `contrasenas`;
 DROP TABLE IF EXISTS `usuarios`;
 
