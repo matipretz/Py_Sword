@@ -88,6 +88,10 @@ CREATE TABLE contrasenas (
   id_users INTEGER NULL DEFAULT NULL,
   FOREIGN KEY (id_users) REFERENCES usuarios (id)
 );
+
+SELECT * FROM usuarios;
+SELECT * FROM contrasenas;
+
 ```
 Asegúrate de que estás en la misma carpeta que tu archivo requirements.txt cuando ejecutas este comando.
 
