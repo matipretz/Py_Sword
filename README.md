@@ -50,16 +50,16 @@ Ahora tienes el repositorio clonado en tu máquina y estás dentro de su directo
 ---
 El siguiente paso es crear un entrono de desarrollo virtual. 'venv' es un módulo que viene incluido en la biblioteca estándar de Python. La aplicacion esta desarrollada con Python 3.10.0, por lo que requiere tener instalada dicha versión. Puedes hacerlo con el siguiente comando:
 ```bash
-virtualenv venv --python=python310
+py -3.10 -m venv env310
 ```
 Esto creará una carpeta llamada venv que contendrá tu entorno virtual. Ahora activa tu entorno virtual:
 En Windows, usa este comando:
 ```bash
-.\venv\Scripts\activate
+.\env310\Scripts\activate
 ```
 En sistemas Unix o MacOS:
 ```bash
-source venv/bin/activate
+source env310/bin/activate
 ```
 Con el entorno virtual activado, ahora puedes instalar las dependencias desde el archivo requirements.txt:
 ```bash

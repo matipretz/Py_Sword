@@ -79,6 +79,7 @@ retriver.py
 .vscode
 .gitattributes
 **/venv310
+**/env310
 *.pyc
 requirements.in
 reqgen.py
