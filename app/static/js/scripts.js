@@ -1,8 +1,11 @@
-function togglePassword() {
+function switchPassword() {
     const contrasenaInput = document.getElementById('contrasena');
     const tipoInput = contrasenaInput.type === 'password' ? 'text' : 'password';
     contrasenaInput.type = tipoInput;
+    const toggleBtn = document.getElementById('toggleBtn');
+    toggleBtn.textContent = tipoInput === 'password' ? 'Mostrar' : 'Ocultar';
 }
+
 function generarContrasena() {
     const longitud = document.getElementById('longitud').value;
     const contrasenaInput = document.getElementById('contrasena');

@@ -32,14 +32,14 @@
   <h1 class="title-password">Almacenamiento de Contraseñas</h1>
   <form action="/agregar" method="post" class="contraseñas">
     <label for="servicio" class="label-password">Servicio:</label>
-    <input type="text" class="input-password" name="servicio" required>
+    <input type="text" class="input-password" id="servicio" name="servicio" required>
     <br>
     <label for="usuario" class="label-password">Usuario:</label>
-    <input type="text" class="input-password" name="usuario" required>
+    <input type="text" class="input-password" id="usuario" name="usuario" required>
     <br>
     <label for="contrasena" class="label-password">Contraseña:</label>
-    <input type="password" class="input-password" name="contrasena" id="contrasena" required>
-    <button type="button" id="toggleBtn" onclick="togglePassword()">Mostrar/ocultar</button>
+    <input type="password" class="input-password" id="contrasena" name="contrasena" required>
+    <button type="button" id="toggleBtn" onclick="switchPassword()">Mostrar</button>
 
     <button type="button" class="password-btn" onclick="generarContrasena()">Al azar</button>
     <br><br>
@@ -48,9 +48,10 @@
     <span id="valorLongitud">12</span>
     <br>
     <button type="submit" class="password-btn">Agregar Contraseña</button>
-  </form>
+</form>
+
   <br>
-  <a href="/ver" class="a-volver">Volver</a>
+  <a href="/ver" class="btn btn-primary home-title">Volver</a>
   <script src="../static/js/scripts.js"></script>
 
 </body>

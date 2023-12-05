@@ -127,6 +127,7 @@ tr:hover {
   box-sizing: border-box;
 }
 
+.btn-update,
 .toggle-btn,
 .copy-btn,
 .delete-btn,
@@ -136,13 +137,22 @@ tr:hover {
   cursor: pointer;
 }
 
+.btn-update {
+  background-color: #3795fa;
+}
+
+.btn-update:hover {
+  color: white;
+  border: 1px solid #3795fa;
+
+}
+
 .delete-btn {
   background-color: red;
 }
 
 .delete-btn:hover {
   color: white;
-  background-color: red;
   border: 1px solid red;
 }
 
@@ -152,12 +162,13 @@ tr:hover {
 
 .toggle-btn:hover {
   color: white;
-  background-color: green;
   border: 1px solid green;
 }
 
 .copy-btn:hover {
   background-color: #f2f2f2;
+  border: 1px solid;
+
 }
 
 .edit-btn {
@@ -166,7 +177,6 @@ tr:hover {
 
 .edit-btn:hover {
   color: white;
-  background-color: orange;
   border: 1px solid orange;
 }
 
@@ -268,15 +278,4 @@ tr:hover {
   padding: 10px;
   margin-bottom: 20px;
   width: 300px;
-}
-
-.btn-update {
-  padding: 10px 20px;
-  background-color: #3795fa;
-  border: 2px solid #3795fa;
-  cursor: pointer;
-}
-
-.btn-update:hover {
-  color: white;
 }
