@@ -1,87 +1,100 @@
-*{
-  margin:0; 
+* {
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 /* Estilos Formulario */
-.form-formularios{
+.form-formularios {
   margin: 5%;
   margin-left: 33%;
   margin-right: 33%;
 }
-.title{
+
+.title {
   font-family: 'Lobster', cursive;
 }
-.title-home{
+
+.title-home {
   text-align: center;
   font-family: 'Lobster', cursive;
   padding-top: 10px;
   font-size: 2rem;
 }
 
-header{
+header {
   padding: 10px 80px 10px 50px;
- 
+
   background-color: #c4d4e9;
 }
-li{
+
+li {
   font-size: 1.2rem;
 }
 
-img{
+img {
   width: 100px;
   height: 100px;
-  margin-right:20px;
+  margin-right: 20px;
 }
-.nav-item{
+
+.nav-item {
   margin: 20px 10px 0 0;
 }
+
 /* ESTILOS A PAGINA PPAL*/
 
-.imagenes-centrales{
+.imagenes-centrales {
   margin-top: -50px;
   margin-left: 150px;
   width: 250px;
   height: 250px;
-  cursor:pointer;
+  cursor: pointer;
   transition: transform 0.3s, filter 0.3s;
 }
+
 .imagenes-centrales:hover {
   transform: scale(1.1);
   filter: brightness(80%);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
+
 i {
   margin-top: -100px;
   margin-left: 60px;
   font-size: 50px;
   color: rgb(153, 201, 217);
 }
-.inicio{
+
+.inicio {
   margin-top: -80px;
 }
-.container-precios{
+
+.container-precios {
   margin-top: -100px;
 }
-.columnas{
+
+.columnas {
   margin-top: 30px;
 }
 
-li i{
+li i {
   display: inline-block;
   font-size: 30px;
   color: grey;
   cursor: pointer;
 }
+
 li i:hover {
-transform: scale(1.2); 
-transition: transform 0.3s ease;
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
 }
 
-button a{
+button a {
   text-decoration: none;
-  color:black;
+  color: black;
 }
+
 /*ESTILOS A LA TABLA */
 table {
   width: 80%;
@@ -90,7 +103,8 @@ table {
   margin-bottom: 50px;
 }
 
-th, td {
+th,
+td {
   border: 1px solid black;
   padding: 8px;
   text-align: left;
@@ -113,46 +127,55 @@ tr:hover {
   box-sizing: border-box;
 }
 
-.toggle-btn, .copy-btn, .delete-btn, .edit-btn{
+.toggle-btn,
+.copy-btn,
+.delete-btn,
+.edit-btn {
   padding: 5px 10px;
   margin-right: 5px;
   cursor: pointer;
 }
-.delete-btn {
-background-color: red;}
 
-.delete-btn:hover {
-color: white;
-background-color: red;
-border: 1px solid red;
+.delete-btn {
+  background-color: red;
 }
 
-.toggle-btn{
+.delete-btn:hover {
+  color: white;
+  background-color: red;
+  border: 1px solid red;
+}
+
+.toggle-btn {
   background-color: green;
 }
 
-.toggle-btn:hover{
-color: white;
-background-color: green;
-border: 1px solid green;
+.toggle-btn:hover {
+  color: white;
+  background-color: green;
+  border: 1px solid green;
 }
 
-.copy-btn:hover{
-background-color: #f2f2f2;
-} 
-.edit-btn{
-background-color: orange;
+.copy-btn:hover {
+  background-color: #f2f2f2;
 }
-.edit-btn:hover{
+
+.edit-btn {
+  background-color: orange;
+}
+
+.edit-btn:hover {
   color: white;
   background-color: orange;
   border: 1px solid orange;
-  }
+}
+
 .copy-btn:disabled {
   cursor: not-allowed;
   background-color: #ccc;
 }
-.home-title{
+
+.home-title {
   margin-left: 150px;
   margin-bottom: 20px;
   font-family: 'Lobster', cursive;
@@ -174,7 +197,7 @@ background-color: orange;
   background-color: #f9f9f9;
 }
 
-.title-password{
+.title-password {
   text-align: center;
   margin-bottom: 30px;
 }
@@ -197,15 +220,18 @@ background-color: orange;
   cursor: pointer;
 }
 
-#toggleBtn, #longitud {
+#toggleBtn,
+#longitud {
   margin-left: 10px;
 }
-.password-btn{
+
+.password-btn {
   background-color: #3795fa;
   border: 2px solid #3795fa;
   cursor: pointer;
 }
-.password-btn:hover{
+
+.password-btn:hover {
   color: white;
 }
 
@@ -250,7 +276,7 @@ background-color: orange;
   border: 2px solid #3795fa;
   cursor: pointer;
 }
-.btn-update:hover{
+
+.btn-update:hover {
   color: white;
 }
-
