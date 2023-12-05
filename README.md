@@ -48,7 +48,7 @@ cd Py_Sword
 Ahora tienes el repositorio clonado en tu máquina y estás dentro de su directorio. Puedes comenzar a trabajar en él.
 
 ---
-El siguiente paso es crear un entrono de desarrollo virtual. 'venv' es un módulo que viene incluido en la biblioteca estándar de Python. La aplicacion esta desarrollada con Python 3.10.0, por lo que requiere tener instalada dicha versión. Puedes hacerlo con el siguiente comando:
+El siguiente paso es crear un entrono de desarrollo virtual. 'venv' es un módulo que viene incluido en la biblioteca estándar de Python. La aplicacion esta desarrollada con [Python 3.10.0](https://www.python.org/downloads/release/python-3100/) por lo que requiere tener instalada dicha versión. Puedes hacerlo con el siguiente comando:
 ```bash
 py -3.10 -m venv env310
 ```
