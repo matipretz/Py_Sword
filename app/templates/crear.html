@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,28 +29,28 @@
   <!--Inicio -->
   <h1 class="title-home">Bienvenido/a {{session["fullname"]}}</h1>
 
-  <h1>Almacenamiento de Contraseñas</h1>
-  <form action="/agregar" method="post">
-    <label for="servicio">Servicio:</label>
-    <input type="text" name="servicio" required>
+  <h1 class="title-password">Almacenamiento de Contraseñas</h1>
+  <form action="/agregar" method="post" class="contraseñas">
+    <label for="servicio" class="label-password">Servicio:</label>
+    <input type="text" class="input-password" name="servicio" required>
     <br>
-    <label for="usuario">Usuario:</label>
-    <input type="text" name="usuario" required>
+    <label for="usuario" class="label-password">Usuario:</label>
+    <input type="text" class="input-password" name="usuario" required>
     <br>
-    <label for="contrasena">Contraseña:</label>
-    <input type="password" name="contrasena" id="contrasena" required>
-    <button type="button" id="toggleBtn" onclick="togglePassword()">Mostrar/ocultar</button>
+    <label for="contrasena" class="label-password">Contraseña:</label>
+    <input type="password" class="input-password" name="contrasena" id="contrasena" required>
+    <button type="button" id="toggleBtn" onclick="togglePassword()" class="password-btn">Mostrar/ocultar</button>
 
-    <button type="button" onclick="generarContrasena()">Al azar</button>
-    <br>
+    <button type="button" class="password-btn" onclick="generarContrasena()">Al azar</button>
+    <br><br>
     <label for="longitud">Longitud:</label>
     <input type="range" id="longitud" name="longitud" min="4" max="16" value="12">
     <span id="valorLongitud">12</span>
     <br>
-    <button type="submit">Agregar Contraseña</button>
+    <button type="submit" class="password-btn" >Agregar Contraseña</button>
   </form>
   <br>
-  <a href="/ver">Volver</a>
+  <a href="/ver" class="a-volver">Volver</a>
   <script src="../static/js/scripts.js"></script>
 
 </body>

@@ -17,12 +17,13 @@ app = Flask(
 app.secret_key = "password1234"
 
 
-app.config["MYSQL_HOST"] = "pysword.mysql.pythonanywhere-services.com"
-app.config["MYSQL_USER"] = "pysword"
-app.config["MYSQL_PASSWORD"] = "wX.MYpAtVL0o7Rk"
+app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = ""
 app.config["MYSQL_DB"] = "pysword$pysword_db"
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 mysql = MySQL(app)
+
 
 @app.route("/")
 def inicio():
@@ -210,7 +211,8 @@ def obtener_contrasena(id):
         except Exception as e:
             print(f"Error al obtener los datos: {str(e)}")
             abort(500)
-            
+
+
 @app.route("/editar/<int:id>", methods=["PUT"])
 def editar_contrasena(id):
     if "logueado" in session and session["logueado"]:

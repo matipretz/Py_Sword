@@ -29,8 +29,8 @@
   <!--Inicio -->
   <h1 class="title-home">Bienvenido/a {{session["fullname"]}}</h1>
 
-  <h1>Contraseñas almacenadas</h1>
-  <a href="{{ url_for('create_page') }}" class="btn btn-primary">Nueva</a>
+  <h2 class="home-title">Contraseñas almacenadas</h2>
+  <a href="{{ url_for('create_page') }}" class="btn btn-primary home-title">Nueva</a>
 
   <table border="1">
     <tr>
@@ -51,7 +51,7 @@
       <td><button type="button" class="toggle-btn" onclick="togglePassword(this)">Mostrar/ocultar</button>
         <button type="button" class="copy-btn" onclick="copyToClipboard(this)" disabled>Copiar</button>
         <button type="button" class="delete-btn" data-id="{{ contrasena.id }}" onclick="deleteRow(this)">Borrar</button>
-        <button onclick="abrirModal({{ contrasena.id }})">Editar</button>
+        <button type="button" class="edit-btn" onclick="abrirModal class="({{ contrasena.id }})>Editar</button>
 
       </td>
     </tr>

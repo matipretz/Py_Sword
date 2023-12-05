@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 /* Estilos Formulario */
-.form{
+.form-formularios{
   margin: 5%;
   margin-left: 33%;
   margin-right: 33%;
@@ -82,3 +82,175 @@ button a{
   text-decoration: none;
   color:black;
 }
+/*ESTILOS A LA TABLA */
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-left: 135px;
+  margin-bottom: 50px;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e6e6e6;
+}
+
+.contrasena-fila {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.toggle-btn, .copy-btn, .delete-btn, .edit-btn{
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.delete-btn {
+background-color: red;}
+
+.delete-btn:hover {
+color: white;
+background-color: red;
+border: 1px solid red;
+}
+
+.toggle-btn{
+  background-color: green;
+}
+
+.toggle-btn:hover{
+color: white;
+background-color: green;
+border: 1px solid green;
+}
+
+.copy-btn:hover{
+background-color: #f2f2f2;
+} 
+.edit-btn{
+background-color: orange;
+}
+.edit-btn:hover{
+  color: white;
+  background-color: orange;
+  border: 1px solid orange;
+  }
+.copy-btn:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+}
+.home-title{
+  margin-left: 150px;
+  margin-bottom: 20px;
+  font-family: 'Lobster', cursive;
+}
+
+/* ESTILOS A PAGINA CREAR*/
+
+.title-home {
+  text-align: center;
+  font-family: 'Lobster', cursive;
+}
+
+.contraseñas {
+  width: 30%;
+  margin-left: 150px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.title-password{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.label-password {
+  margin-top: 10px;
+  display: block;
+}
+
+.input-password {
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-password {
+  margin-top: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#toggleBtn, #longitud {
+  margin-left: 10px;
+}
+.password-btn{
+  background-color: #3795fa;
+  border: 2px solid #3795fa;
+  cursor: pointer;
+}
+.password-btn:hover{
+  color: white;
+}
+
+.a-volver {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+/*UPDATE*/
+.title-update {
+  font-size: 24px;
+  font-family: 'Lobster', cursive;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-update {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 35%;
+  text-align: center;
+}
+
+.label-update {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.input-update {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+.btn-update {
+  padding: 10px 20px;
+  background-color: #3795fa;
+  border: 2px solid #3795fa;
+  cursor: pointer;
+}
+.btn-update:hover{
+  color: white;
+}
+
