@@ -1,149 +1,158 @@
-{% extends "base.html" %}
-{% block content %}
-{% include 'nav.html' %}
+<!-- LANDING PAGE -->
 
-<h1 class="inicio" class="visually-hidden"></h1>
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
 
-<div class="px-4 py-5 my-5 text-center">
+<body>
+  {% include 'nav.html' %}
+  <h1 class="inicio" class="visually-hidden"></h1>
 
-  <h2 class="display-5 fw-bold">El Lugar más seguro para <br>almacenar sus Contraseñas</h2>
-  <div class="col-lg-6 mx-auto">
-    <p class="lead mb-4"><br>Tus datos te pertenecen. <b>Py Sword</b> le permite almacenar y sincronizar contraseñas
-      donde sea mejor para usted: iCloud, Google Drive, OneDrive, Box, Dropbox, NextCloud, WebDAV o completamente sin
-      conexión.</p>
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-      <button type="button" class="btn btn-primary btn-lg px-4 gap-3 blanco">
-        <a href="index">Personal</a></button>
-      <button type="button" class="btn btn-outline-secondary btn-lg px-4">
-        <a href="index">Negocio</a></button>
-    </div>
-  </div>
-</div>
+  <div class="px-4 py-5 my-5 text-center">
 
-<!--SEGUNDO BLOQUE DE CONTENIDO-->
-
-<div> <img src="{{url_for('static', filename='img/programas-gestion.png')}}" class="imagenes-centrales" alt="Imagen 1">
-  <img src="{{url_for('static', filename='img/computadora-seguridad.png')}}" class="imagenes-centrales" alt="Imagen 2">
-  <img src="{{url_for('static', filename='img/dispositivos.png')}}" class="imagenes-centrales" alt="Imagen 3"> </div>
-
-
-<!--TERCER  BLOQUE DE CONTENIDO -->
-
-<div class="container px-4 py-5" id="icon-grid">
-  <h2 class="pb-2 border-bottom">Estos son algunos de los beneficios de contar con Py Sword</h2>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-    <div class="col d-flex align-items-start">
-      <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-        <use xlink:href="#bootstrap" />
-      </svg>
-      <div>
-        <i class='bx bx-cart'></i>
-        <h4 class="fw-bold mb-0">Compras Seguras Online</h4>
-        <p>Complete automáticamente los datos de pago cuando compre en línea y protéjase de ataques de phishing.</p>
-      </div>
-    </div>
-    <div class="col d-flex align-items-start">
-      <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-        <use xlink:href="#cpu-fill" />
-      </svg>
-      <div>
-        <i class='bx bx-check-shield'></i>
-        <h4 class="fw-bold mb-0">Auditoría de Contraseñas</h4>
-        <p>Realice un control de estado periódico para filtrar sus contraseñas débiles, comprometidas, antiguas y
-          caducadas.</p>
-      </div>
-    </div>
-    <div class="col d-flex align-items-start">
-      <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-        <use xlink:href="#calendar3" />
-      </svg>
-      <div>
-        <i class='bx bx-coin-stack'></i>
-        <h4 class="fw-bold mb-0">Bóvedas múltiples</h4>
-        <p>Mantén todo organizado con perfiles separados para trabajo, personal y familia, y brinda a la familia
-          acceso a todo lo que necesitan.</p>
-      </div>
-    </div>
-    <div class="col d-flex align-items-start">
-      <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-        <use xlink:href="#home" />
-      </svg>
-      <div>
-        <i class='bx bxl-redux' class="icons"></i>
-        <h4 class="fw-bold mb-0">Un lugar para todo</h4>
-        <p>Elija entre una biblioteca de más de 80 plantillas integradas para almacenar tarjetas de crédito,
-          pasaportes, permisos de conducir, documentos de seguros y más.</p>
+    <h2 class="display-5 fw-bold">El Lugar más seguro para <br>almacenar sus Contraseñas</h2>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4"><br>Tus datos te pertenecen. <b>Py Sword</b> le permite almacenar y sincronizar contraseñas
+        donde sea mejor para usted: iCloud, Google Drive, OneDrive, Box, Dropbox, NextCloud, WebDAV o completamente sin
+        conexión.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3 blanco">
+          <a href="index">Personal</a></button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+          <a href="index">Negocio</a></button>
       </div>
     </div>
   </div>
-</div>
-<!--CUARTO BLOQUE DE CONTENIDO-->
 
-<div class="container py-3 container-precios">
-  <header>
+  <!--SEGUNDO BLOQUE DE CONTENIDO-->
 
-    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-      <h1 class="display-4 fw-normal">Precios</h1>
-      <p class="fs-5 text-muted">Elija el plan que se adapte a sus necesidades.</p>
-    </div>
-  </header>
-  <main>
-    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center columnas">
-      <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Gratis</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">USD 0 <small class="text-muted fw-light">/por mes <br>Siempre
-                Gratis</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>1 Cuenta Incluida</li>
-              <li>Dispositivos Ilimitados</li>
-              <li>Todas las Funciones Principales</li>
-              <li>Siempre Gratis</li>
-            </ul>
-            <button type="button" class="w-100 btn btn-lg btn-outline-primary">
-              <a href="registro"> Registrese Gratis</a>
-            </button>
-          </div>
+  <div> <img src="{{url_for('static', filename='img/programas-gestion.png')}}" class="imagenes-centrales"
+      alt="Imagen 1">
+    <img src="{{url_for('static', filename='img/computadora-seguridad.png')}}" class="imagenes-centrales"
+      alt="Imagen 2">
+    <img src="{{url_for('static', filename='img/dispositivos.png')}}" class="imagenes-centrales" alt="Imagen 3">
+  </div>
+
+
+  <!--TERCER  BLOQUE DE CONTENIDO -->
+
+  <div class="container px-4 py-5" id="icon-grid">
+    <h2 class="pb-2 border-bottom">Estos son algunos de los beneficios de contar con Py Sword</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+          <use xlink:href="#bootstrap" />
+        </svg>
+        <div>
+          <i class='bx bx-cart'></i>
+          <h4 class="fw-bold mb-0">Compras Seguras Online</h4>
+          <p>Complete automáticamente los datos de pago cuando compre en línea y protéjase de ataques de phishing.</p>
         </div>
       </div>
-      <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Familiar</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">USD 3.99<small class="text-muted fw-light">/por mes <br> 1er Mes
-                Gratis</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>Hasta 10 cuentas</li>
-              <li>Dispositivos Ilimitados</li>
-              <li>Acceso de Emergencias</li>
-              <li>Reportes e Informes de seguridad</li>
-            </ul>
-            <button type="button" class="w-100 btn btn-lg btn-primary"> <a href="registro"> Registrese</a></button>
-          </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+          <use xlink:href="#cpu-fill" />
+        </svg>
+        <div>
+          <i class='bx bx-check-shield'></i>
+          <h4 class="fw-bold mb-0">Auditoría de Contraseñas</h4>
+          <p>Realice un control de estado periódico para filtrar sus contraseñas débiles, comprometidas, antiguas y
+            caducadas.</p>
         </div>
       </div>
-      <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm border-primary">
-          <div class="card-header py-3 text-white bg-primary border-primary">
-            <h4 class="my-0 fw-normal">Empresarial</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">USD 29.99<small class="text-muted fw-light">/por mes <br> 2
-                Meses Gratis al Año</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>Hasta 50 cuentas</li>
-              <li>Dispositivos Ilimitados</li>
-              <li>Acceso Prioritarios de Emergencias</li>
-              <li>Funciones Avanzadas de Seguridad</li>
-            </ul>
-            <button type="button" class="w-100 btn btn-lg btn-primary"><a href="registro"> Registrese</a></button>
-          </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+          <use xlink:href="#calendar3" />
+        </svg>
+        <div>
+          <i class='bx bx-coin-stack'></i>
+          <h4 class="fw-bold mb-0">Bóvedas múltiples</h4>
+          <p>Mantén todo organizado con perfiles separados para trabajo, personal y familia, y brinda a la familia
+            acceso a todo lo que necesitan.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+          <use xlink:href="#home" />
+        </svg>
+        <div>
+          <i class='bx bxl-redux' class="icons"></i>
+          <h4 class="fw-bold mb-0">Un lugar para todo</h4>
+          <p>Elija entre una biblioteca de más de 80 plantillas integradas para almacenar tarjetas de crédito,
+            pasaportes, permisos de conducir, documentos de seguros y más.</p>
         </div>
       </div>
     </div>
-    {% endblock %}
+  </div>
+  <!--CUARTO BLOQUE DE CONTENIDO-->
+
+  <div class="container py-3 container-precios">
+    <header>
+
+      <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal">Precios</h1>
+        <p class="fs-5 text-muted">Elija el plan que se adapte a sus necesidades.</p>
+      </div>
+    </header>
+    <main>
+      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center columnas">
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Gratis</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">USD 0 <small class="text-muted fw-light">/por mes <br>Siempre
+                  Gratis</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>1 Cuenta Incluida</li>
+                <li>Dispositivos Ilimitados</li>
+                <li>Todas las Funciones Principales</li>
+                <li>Siempre Gratis</li>
+              </ul>
+              <button type="button" class="w-100 btn btn-lg btn-outline-primary">
+                <a href="registro"> Registrese Gratis</a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Familiar</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">USD 3.99<small class="text-muted fw-light">/por mes <br> 1er Mes
+                  Gratis</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Hasta 10 cuentas</li>
+                <li>Dispositivos Ilimitados</li>
+                <li>Acceso de Emergencias</li>
+                <li>Reportes e Informes de seguridad</li>
+              </ul>
+              <button type="button" class="w-100 btn btn-lg btn-primary"> <a href="registro"> Registrese</a></button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Empresarial</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">USD 29.99<small class="text-muted fw-light">/por mes <br> 2
+                  Meses Gratis al Año</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Hasta 50 cuentas</li>
+                <li>Dispositivos Ilimitados</li>
+                <li>Acceso Prioritarios de Emergencias</li>
+                <li>Funciones Avanzadas de Seguridad</li>
+              </ul>
+              <button type="button" class="w-100 btn btn-lg btn-primary"><a href="registro"> Registrese</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</body>
+</html>

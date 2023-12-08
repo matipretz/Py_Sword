@@ -1,29 +1,35 @@
-{% extends "base.html" %}
+<!-- CREAR PASS -->
 
-{% block content %}
-<h1 class="title-home">Bienvenido/a {{session["fullname"]}}</h1>
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
+<body>
+  {% include 'header.html' %}
+  <h1 class="title-home">Bienvenido/a {{session["fullname"]}}</h1>
 
-<h1 class="title-password">Almacenamiento de Contraseñas</h1>
-<form action="/agregar" method="post" class="contraseñas">
-  <label for="servicio" class="label-password">Servicio:</label>
-  <input type="text" class="input-password" id="servicio" name="servicio" required>
+  <h1 class="title-password">Almacenamiento de Contraseñas</h1>
+  <form action="/agregar" method="post" class="contraseñas">
+    <label for="servicio" class="label-password">Servicio:</label>
+    <input type="text" class="input-password" id="servicio" name="servicio" required>
+    <br>
+    <label for="usuario" class="label-password">Usuario:</label>
+    <input type="text" class="input-password" id="usuario" name="usuario" required>
+    <br>
+    <label for="contrasena" class="label-password">Contraseña:</label>
+    <input type="password" class="input-password" id="contrasena" name="contrasena" required>
+    <button type="button" id="toggleBtn" onclick="switchPassword()">Mostrar</button>
+
+    <button type="button" class="password-btn" onclick="generarContrasena()">Al azar</button>
+    <br><br>
+    <label for="longitud">Longitud:</label>
+    <input type="range" id="longitud" name="longitud" min="4" max="16" value="12">
+    <span id="valorLongitud">12</span>
+    <br>
+    <button type="submit" class="password-btn">Agregar Contraseña</button>
+  </form>
+
   <br>
-  <label for="usuario" class="label-password">Usuario:</label>
-  <input type="text" class="input-password" id="usuario" name="usuario" required>
-  <br>
-  <label for="contrasena" class="label-password">Contraseña:</label>
-  <input type="password" class="input-password" id="contrasena" name="contrasena" required>
-  <button type="button" id="toggleBtn" onclick="switchPassword()">Mostrar</button>
-
-  <button type="button" class="password-btn" onclick="generarContrasena()">Al azar</button>
-  <br><br>
-  <label for="longitud">Longitud:</label>
-  <input type="range" id="longitud" name="longitud" min="4" max="16" value="12">
-  <span id="valorLongitud">12</span>
-  <br>
-  <button type="submit" class="password-btn">Agregar Contraseña</button>
-</form>
-
-<br>
-<a href="/ver" class="btn btn-primary home-title">Volver</a>
-{% endblock %}
+  <a href="/ver" class="btn btn-primary home-title">Volver</a>
+  {% include 'footer.html' %}
+</body>
+</html>
