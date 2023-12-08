@@ -6,8 +6,7 @@ from flask import (
     url_for,
     session,
     abort,
-    jsonify,
-)
+    )
 from flask_mysqldb import MySQL
 
 
