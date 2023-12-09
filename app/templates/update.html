@@ -1,43 +1,49 @@
 <!-- EDITAR PASS-->
+<!DOCTYPE html>
+<html>
 {% include 'head.html' %}
 <link rel="stylesheet" href="../static/css/modals.css">
+<body>
 
-<div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
-  id="modalSignin">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <h1 class="fw-bold mb-0 fs-2">Editar Contraseña:</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cerrarIframe()"></button>
+  <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
+    id="modalSignin">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-header p-5 pb-4 border-bottom-0">
+          <h1 class="fw-bold mb-0 fs-2">Editar Contraseña:</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            onclick="cerrarModal()"></button>
 
-      </div>
-      <div class="modal-body p-5 pt-0">
-        <form id="editarForm" action="/editar/{{ contrasena.id }}" method="post" class="form-update">
+        </div>
+        <div class="modal-body p-5 pt-0">
+          <form id="editarForm" action="/editar/{{ contrasena.id }}" method="post" class="form-update">
 
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3 " id="nuevo_servicio" name="nuevo_servicio"
-              value="{{ contrasena.servicio }}" required /><br />
-            <label for="nuevo_servicio" class="label-update">Servicio:</label>
-          </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-3 " id="nuevo_servicio" name="nuevo_servicio"
+                value="{{ contrasena.servicio }}" required /><br />
+              <label for="nuevo_servicio" class="label-update">Servicio:</label>
+            </div>
 
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" id="nuevo_usuario" name="nuevo_usuario"
-              value="{{ contrasena.usuario }}" required /><br />
-            <label for="nuevo_usuario" class="label-update">Usuario:</label>
-          </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-3" id="nuevo_usuario" name="nuevo_usuario"
+                value="{{ contrasena.usuario }}" required /><br />
+              <label for="nuevo_usuario" class="label-update">Usuario:</label>
+            </div>
 
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" id="nueva_contrasena" name="nueva_contrasena"
-              value="{{ contrasena.contrasena }}" required /><br />
-            <label for="nueva_contrasena" class="label-update">Contraseña:</label>
-          </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-3" id="nueva_contrasena" name="nueva_contrasena"
+                value="{{ contrasena.contrasena }}" required /><br />
+              <label for="nueva_contrasena" class="label-update">Contraseña:</label>
+            </div>
 
-          <button type="submit" class="btn-update w-100 mb-2 btn btn-lg rounded-3 btn-success">
-            Guardar Cambios
-          </button>
-        </form>
-        <script src="../static/js/scripts.js"></script>
+            <button type="submit" class="btn-update w-100 mb-2 btn btn-lg rounded-3 btn-success">
+              Guardar Cambios
+            </button>
+          </form>
+          <script src="../static/js/scripts.js"></script>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</body>
+</html>
