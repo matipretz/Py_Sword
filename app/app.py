@@ -6,9 +6,8 @@ from flask import (
     url_for,
     session,
     abort,
-    )
+)
 from flask_mysqldb import MySQL
-
 
 app = Flask(
     __name__,
@@ -26,27 +25,16 @@ mysql = MySQL(app)
 
 @app.route("/")
 def inicio():
-    if "logueado" in session and session["logueado"]:
-        user_id = session.get("user_id")
-        return redirect(url_for("ver"))
-    else:        
-        return render_template("py_sword.html")
+    return render_template("py_sword.html")
 
 
 @app.route("/index")
 def index():
-    if "logueado" in session and session["logueado"]:
-        user_id = session.get("user_id")
-        return redirect(url_for("ver"))
-    else:
-        return render_template("index.html")
+    return render_template("index.html")
 
 
 @app.route("/acceso-login", methods=["GET", "POST"])
 def login():
-    if "logueado" in session and session["logueado"]:
-        user_id = session.get("user_id")
-        return redirect(url_for("ver"))
     if (
         request.method == "POST"
         and "txtEmail" in request.form
@@ -73,7 +61,7 @@ def login():
 
         return redirect("ver")
     else:
-        return render_template("index.html", mensaje="Correo o Contraseña Incorrecta")
+        return render_template("index.html", mensaje="Usuario o Contraseña Incorrecta")
 
 
 @app.route("/logout")
@@ -84,41 +72,34 @@ def logout():
 
 @app.route("/registro")
 def registro():
-    if "logueado" in session and session["logueado"]:
-        user_id = session.get("user_id")
-        return redirect(url_for("ver"))
-    else:
-        return render_template("registro.html")
+    return render_template("registro.html")
 
 
 @app.route("/crear-registro", methods=["GET", "POST"])
 def crear_registro():
-    if "logueado" in session and session["logueado"]:
-        user_id = session.get("user_id")
-        return redirect(url_for("ver"))
-    else:
-        name = request.form["txtFullname"]
-        email = request.form["txtEmail"]
-        password = request.form["txtPassword"]
+    name = request.form["txtFullname"]
+    email = request.form["txtEmail"]
+    password = request.form["txtPassword"]
 
-        conn = mysql.connect
-        cur = conn.cursor()
-        cur.execute(
-            "INSERT INTO usuarios(fullname, mail, password) VALUES (%s, %s, %s)",
-            (name, email, password),
-        )
-        conn.commit()
+    conn = mysql.connect
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO usuarios(fullname, mail, password) VALUES (%s, %s, %s)",
+        (name, email, password),
+    )
+    conn.commit()
 
-        return render_template("index.html", mensaje2="Usuario Registrado Exitosamente")
+    return render_template("index.html", mensaje2="Usuario Registrado Exitosamente")
 
 
 @app.route("/py_sword")
 def py_sword():
-    if "logueado" in session and session["logueado"]:
-        user_id = session.get("user_id")
-        return redirect(url_for("ver"))
-    else:
-        return render_template("py_sword.html")
+    return render_template("py_sword.html")
+
+
+@app.route("/ver-page")
+def ver_page():
+    return render_template("home.html")
 
 
 @app.route("/ver", methods=["GET", "POST"])  # type:ignore
@@ -177,14 +158,12 @@ def get_entrada(id):
             if entrada:
                 return entrada
             else:
-                abort(404)  
+                abort(404)
         except Exception as e:
             print(f"Error al obtener entrada desde la base de datos: {str(e)}")
-            abort(403)  
+            abort(403)
     else:
         return redirect(url_for("index"))
-
-
 
 
 @app.route("/borrar/<int:id>", methods=["DELETE"])
@@ -202,15 +181,15 @@ def delete_entrada(id):
             if entrada:
                 return redirect(url_for("ver"))
             else:
-                abort(404) 
+                abort(404)
         except Exception as e:
             print(f"Error al borrar entrada desde la base de datos: {str(e)}")
-            abort(500)  
+            abort(500)
     else:
-        abort(403)  
+        abort(403)
 
 
-@app.route("/editar/<int:id>", methods=["GET"]) # type:ignore
+@app.route("/editar/<int:id>", methods=["GET"])  # type:ignore
 def obtener_contrasena(id):
     if "logueado" in session and session["logueado"]:
         try:
@@ -227,6 +206,7 @@ def obtener_contrasena(id):
         except Exception as e:
             print(f"Error al obtener los datos: {str(e)}")
             abort(500)
+
 
 @app.route("/editar/<int:id>", methods=["POST"])
 def editar_contrasena(id):
