@@ -1,10 +1,12 @@
 <!-- NAV INTERNO -->
-<header>
-    <ul class="nav nav-tabs nav justify-content-end">
-      <a class="navbar-logo" href="#">
-        <img src="{{url_for('static', filename='img/logo_py_sword.png')}}" alt="Logo">
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('logout')}}">Cerrar Sesión</a>
-        </li>
-    </ul>
+<div class="container">
+  <header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+    <div class="col-md-3 mb-2 mb-md-0">
+      <img class="bi me-2" width="40" height="40" role="img" src="../static/img/PySword.svg">
+    </div>
+    <div class="col-md-3 text-end">
+      <a type="button" href="{{url_for('logout')}}" class="btn btn-outline-primary me-2">Cerrar Sesión</a>
+    </div>
   </header>
+</div>

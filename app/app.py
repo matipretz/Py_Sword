@@ -26,16 +26,27 @@ mysql = MySQL(app)
 
 @app.route("/")
 def inicio():
-    return render_template("py_sword.html")
+    if "logueado" in session and session["logueado"]:
+        user_id = session.get("user_id")
+        return redirect(url_for("ver"))
+    else:        
+        return render_template("py_sword.html")
 
 
 @app.route("/index")
 def index():
-    return render_template("index.html")
+    if "logueado" in session and session["logueado"]:
+        user_id = session.get("user_id")
+        return redirect(url_for("ver"))
+    else:
+        return render_template("index.html")
 
 
 @app.route("/acceso-login", methods=["GET", "POST"])
 def login():
+    if "logueado" in session and session["logueado"]:
+        user_id = session.get("user_id")
+        return redirect(url_for("ver"))
     if (
         request.method == "POST"
         and "txtEmail" in request.form
@@ -62,7 +73,7 @@ def login():
 
         return redirect("ver")
     else:
-        return render_template("index.html", mensaje="Usuario o Contraseña Incorrecta")
+        return render_template("index.html", mensaje="Correo o Contraseña Incorrecta")
 
 
 @app.route("/logout")
@@ -73,34 +84,41 @@ def logout():
 
 @app.route("/registro")
 def registro():
-    return render_template("registro.html")
+    if "logueado" in session and session["logueado"]:
+        user_id = session.get("user_id")
+        return redirect(url_for("ver"))
+    else:
+        return render_template("registro.html")
 
 
 @app.route("/crear-registro", methods=["GET", "POST"])
 def crear_registro():
-    name = request.form["txtFullname"]
-    email = request.form["txtEmail"]
-    password = request.form["txtPassword"]
+    if "logueado" in session and session["logueado"]:
+        user_id = session.get("user_id")
+        return redirect(url_for("ver"))
+    else:
+        name = request.form["txtFullname"]
+        email = request.form["txtEmail"]
+        password = request.form["txtPassword"]
 
-    conn = mysql.connect
-    cur = conn.cursor()
-    cur.execute(
-        "INSERT INTO usuarios(fullname, mail, password) VALUES (%s, %s, %s)",
-        (name, email, password),
-    )
-    conn.commit()
+        conn = mysql.connect
+        cur = conn.cursor()
+        cur.execute(
+            "INSERT INTO usuarios(fullname, mail, password) VALUES (%s, %s, %s)",
+            (name, email, password),
+        )
+        conn.commit()
 
-    return render_template("index.html", mensaje2="Usuario Registrado Exitosamente")
+        return render_template("index.html", mensaje2="Usuario Registrado Exitosamente")
 
 
 @app.route("/py_sword")
 def py_sword():
-    return render_template("py_sword.html")
-
-
-@app.route("/ver-page")
-def ver_page():
-    return render_template("home.html")
+    if "logueado" in session and session["logueado"]:
+        user_id = session.get("user_id")
+        return redirect(url_for("ver"))
+    else:
+        return render_template("py_sword.html")
 
 
 @app.route("/ver", methods=["GET", "POST"])  # type:ignore
@@ -167,7 +185,6 @@ def get_entrada(id):
         return redirect(url_for("index"))
 
 
-from flask import abort, redirect, url_for
 
 
 @app.route("/borrar/<int:id>", methods=["DELETE"])

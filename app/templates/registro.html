@@ -3,72 +3,55 @@
 <html lang="en">
 {% include 'head.html' %}
 <body>
-  <div class="form-formularios">
-    <form class="form-control" action="crear-registro" method="POST">
-      <!-- TITULO DE FORMULARIO REGISTRO -->
-      <h1 class="title">Registrarse</h1>
-      <!-- ALERTA -->
-      {% if mensaje %}
-      <div class="alert alert-danger" role="alert">{{ mensaje}}</div>
-      {% endif %}
+  <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/"><img class="bi me-2" width="40" height="40" role="img" src="../static/img/PySword.svg"></a>
 
-      <div class="form-group">
-        <label for="exampleInputname " class="t text-center">Nombre y Apellido</label>
-        <input type="name" class="form-control" id="exampleInputName" aria-describedby="namelHelp"
-          placeholder="Nombre y Apellido" name="txtFullname" />
-        <small id="nameHelp" class="form-text text-muted"></small>
       </div>
-      <br />
+      <div class="col-md-3 text-end">
+        <small>¿Ya tenés una cuenta?</small>
+        <a type="button" href="index" class="btn btn-outline-primary me-2">Iniciar sesión</a>
+      </div>
+    </header>
+  </div>
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Bienvenido a la tranquilidad</h1>
+        <p class="col-lg-10 fs-4">Con Py Sword podes estar tranquilo de que tus contraseñas van a estar seguras y
+          disponibles las 24hs. Solamente vos vas a poder utilizarlas. No las puede ver nadie mas, ni nosotros.
+          <br>Nuestro poderoso algoritmo te garantiza crear contraseñas a prueba de hackers, pero de todas formas te
+          recomendamos que siempres uses un segundo factor de autenticación.
+        </p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="crear-registro" method="POST">
+          {% if mensaje %}
+          <div class="alert alert-danger" role="alert">{{ mensaje}}</div>
+          {% endif %}
 
-      <div class="form-group">
-        <label for="exampleInputEmail1 " class="t text-center">Correo</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-          placeholder="Ingrese su Correo Electrónico " name="txtEmail" />
-        <small id="emailHelp" class="form-text text-muted"></small>
-      </div>
-      <br />
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingUser" placeholder="Nombre de usuario" name="txtFullname" required>
+            <label for="floatingUser">Nombre de usuario</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="txtEmail" required>
+            <label for="floatingInput">Correo Electrónico</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña"
+              name="txtPassword" required>
+            <label for="floatingPassword">Contraseña</label>
+          </div>
 
-      <div class="form-group">
-        <label for="exampleInputPassword1 " class="t text-center">Contraseña</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su Contraseña"
-          name="txtPassword" />
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button>
+          <hr class="my-4">
+          <small class="text-body-secondary">Al hacer clic en Registrarse, aceptas los términos de uso.</small>
+        </form>
       </div>
-      <div class="form-check"></div>
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary">Registrar</button>
-      </div>
-    </form>
+    </div>
   </div>
   {% include 'footer.html' %}
 </body>
 </html>
-
-
-<div class="container col-xl-10 col-xxl-8 px-4 py-5">
-  <div class="row align-items-center g-lg-5 py-5">
-    <div class="col-lg-7 text-center text-lg-start">
-      <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Vertically centered hero sign-up form</h1>
-      <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
-    </div>
-    <div class="col-md-10 mx-auto col-lg-5">
-      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
-        </div>
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
-        <hr class="my-4">
-        <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
-      </form>
-    </div>
-  </div>
-</div>
