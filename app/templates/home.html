@@ -22,6 +22,7 @@
       <a class="navbar-logo" href="py_sword.html">
         <img src="{{url_for('static', filename='img/logo_py_sword.png')}}" alt="Logo">
         <li class="nav-item">
+          <a class="nav-link" href="/edit-user{{user[0]}}">Editar Usuario</a>
           <a class="nav-link" href="{{url_for('logout')}}">Cerrar Sesión</a>
         </li>
     </ul>

@@ -103,6 +103,44 @@ def crear_registro():
     return render_template("index.html", mensaje2="Usuario Registrado Exitosamente")
 
 
+# --- NO FUNCIONA ----
+
+
+# Obtener datos de usuario para editarlos
+@app.route("/edit-user/<id>", methods=["GET"])
+def get_user(id):
+    cur = mysql.connection.cursor()
+    cur.execute(" SELECT * FROM usuarios WHERE id = %s", (id))
+    data = cur.fetchall()
+    return render_template("edit-user.html", user=data)
+
+
+# Editar Usuario
+@app.route("/update/<int:id>", methods=["POST"])
+def update_user(id):
+    if request.methods == "POST":
+        fullname = request.form["fullname"]
+        mail = request.form["mail"]
+        password = request.form["password"]
+        cur = mysql.connection.cursor()
+        cur.execute(
+            """
+        UPDATE usuarios 
+        SET fullname= %s, 
+            mail = %s, 
+            password = %s,
+            id_rol = '2',
+        WHERE id = %s           
+        """,
+            (fullname, mail, password, id),
+        )
+        mysql.connection.commit()
+        return redirect(url_for("home"))
+
+
+# ----------------------------------------------------------------------------
+
+
 @app.route("/py_sword")
 def py_sword():
     return render_template("py_sword.html")
@@ -126,7 +164,7 @@ def ver():
             contrasenas = cursor.fetchall()
             cursor.close()
             conn.close()
-            return render_template("home.html", contrasenas=contrasenas)
+            return render_template("home.html", contrasenas=contrasenas, user=data)
 
 
 @app.route("/create-page")
