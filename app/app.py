@@ -35,6 +35,11 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
+
+
 @app.route("/acceso-login", methods=["GET", "POST"])
 def login():
     if (
@@ -60,8 +65,12 @@ def login():
         session["logueado"] = True
         session["fullname"] = account["fullname"]
         session["user_id"] = account["id"]
+        session["id_rol"] = account["id_rol"]
 
-        return redirect("ver")
+        if session["id_rol"] == 1:
+            return render_template("admin.html")
+        elif session["id_rol"] == 2:
+            return redirect("ver")
     else:
         return render_template("index.html", mensaje="Usuario o Contraseña Incorrecta")
 
@@ -86,7 +95,7 @@ def crear_registro():
     conn = mysql.connect
     cur = conn.cursor()
     cur.execute(
-        "INSERT INTO usuarios(fullname, mail, password) VALUES (%s, %s, %s)",
+        "INSERT INTO usuarios(fullname, mail, password, id_rol) VALUES (%s, %s, %s,'2')",
         (name, email, password),
     )
     conn.commit()
