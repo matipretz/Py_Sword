@@ -1,5 +1,5 @@
-from flask import Flask
 from flask import (
+    Flask,
     render_template,
     request,
     redirect,
@@ -131,7 +131,6 @@ def create_entradas():
             servicio = request.form.get("servicio")
             usuario = request.form.get("usuario")
             contrasena = request.form.get("contrasena")
-
             query = "INSERT INTO contrasenas (servicio, usuario, contrasena, id_users) VALUES (%s, %s, %s, %s)"
             values = (servicio, usuario, contrasena, user_id)
             conn = mysql.connect
