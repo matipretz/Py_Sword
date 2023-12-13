@@ -82,14 +82,6 @@ function habilitarEdicion(id) {
     window.location.href = `/editar/${id}`;
 }
 
-function abrirModal(id) {
-    var modal = document.getElementById('editarModal');
-    var iframe = document.getElementById('editarFrame');
-    iframe.src = `/editar/${id}`;
-    modal.style.display = 'block';
-}
-
 function cerrarModal() {
-    var modal = document.getElementById('editarModal');
-    modal.style.display = 'none';
+    history.back();
 }

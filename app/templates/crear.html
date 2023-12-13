@@ -1,59 +1,61 @@
+<!-- CREAR PASS -->
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!--CÓDIGO PARA ENLAZAR BOOSTRAP-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-  <title>Bienvenido/a a Py Sword</title>
-  <!--FAVICON-->
-  {% include 'favicon.html' %}
-</head>
+<html>
+{% include 'head.html' %}
 <body>
-  <!--CÓDIGO PARA ELNAZAR ESTILOS-->
-  {% block CustomCSS%}
-  <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}" />
-  {%endblock%}
 
-  <!--BARRA DE NAVEGACIÓN-->
-  <header>
-    <ul class="nav nav-tabs nav justify-content-end">
-      <a class="navbar-logo" href="py_sword.html">
-        <img src="{{url_for('static', filename='img/logo_py_sword.png')}}" alt="Logo">
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('logout')}}">Cerrar Sesión</a>
-        </li>
-    </ul>
-  </header>
-  <!--Inicio -->
-  <h1 class="title-home">Bienvenido/a {{session["fullname"]}}</h1>
+  <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
+    id="modalSignin">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-header p-5 pb-4 border-bottom-0">
+          <h1 class="fw-bold mb-0 fs-2">Crear Contraseña:</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            onclick="cerrarModal()"></button>
+        </div>
+        <div class="modal-body p-5 pt-0">
+          <form action="/agregar" method="post" class="contraseñas">
 
-  <h1 class="title-password">Almacenamiento de Contraseñas</h1>
-  <form action="/agregar" method="post" class="contraseñas">
-    <label for="servicio" class="label-password">Servicio:</label>
-    <input type="text" class="input-password" id="servicio" name="servicio" required>
-    <br>
-    <label for="usuario" class="label-password">Usuario:</label>
-    <input type="text" class="input-password" id="usuario" name="usuario" required>
-    <br>
-    <label for="contrasena" class="label-password">Contraseña:</label>
-    <input type="password" class="input-password" id="contrasena" name="contrasena" required>
-    <button type="button" id="toggleBtn" onclick="switchPassword()">Mostrar</button>
 
-    <button type="button" class="password-btn" onclick="generarContrasena()">Al azar</button>
-    <br><br>
-    <label for="longitud">Longitud:</label>
-    <input type="range" id="longitud" name="longitud" min="4" max="16" value="12">
-    <span id="valorLongitud">12</span>
-    <br>
-    <button type="submit" class="password-btn">Agregar Contraseña</button>
-</form>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-3" id="servicio" name="servicio" required /><br />
+              <label for="servicio" class="label-update">Servicio:</label>
+            </div>
 
-  <br>
-  <a href="/ver" class="btn btn-primary home-title">Volver</a>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-3" id="usuario" name="usuario" required /><br />
+              <label for="usuario" class="label-update">Usuario:</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control rounded-3" id="contrasena" name="contrasena" required /><br />
+              <label for="contrasena" class="label-update">Contraseña:</label>
+
+
+              <div>
+                <label for="longitud" class="form-label">Longitud:</label> <span id="valorLongitud">12</span>
+                <input type="range" class="form-range" min="4" max="16" value="12" id="longitud">
+              </div>
+
+              <a type="button" id="toggleBtn" onclick="switchPassword()"
+                class="btn btn-outline-primary d-inline-flex align-items-center">
+                Mostrar
+              </a>
+
+              <button type="button" class="btn btn-outline-primary d-inline-flex align-items-center"
+                onclick="generarContrasena()">Al azar</button>
+            </div>
+
+
+
+            <button type="submit" class="btn-update w-100 mb-2 btn btn-lg rounded-3 btn-success">Agregar
+              Contraseña</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="../static/js/scripts.js"></script>
-
 </body>
-{% include 'footer.html' %}
 </html>
