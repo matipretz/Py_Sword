@@ -105,10 +105,11 @@ def crear_registro():
 
     return render_template("index.html", mensaje2="Usuario Registrado Exitosamente")
 
+
 # Obtener datos de usuario para editarlos
 @app.route("/edit-user/<int:id>", methods=["GET"])
 def get_user(id):
-    cur = mysql.connection.cursor()
+    cur = mysql.connect.cursor()
     cur.execute("SELECT * FROM usuarios WHERE id = %s", (id,))
     data = cur.fetchone()
     return redirect(url_for("edit-user<int:id>", user=data))
@@ -121,7 +122,7 @@ def update_user(id):
         fullname = request.form["fullname"]
         mail = request.form["mail"]
         password = request.form["password"]
-        cur = mysql.connection.cursor()
+        cur = mysql.connect.cursor()
         cur.execute(
             """
         UPDATE usuarios 
@@ -133,7 +134,7 @@ def update_user(id):
         """,
             (fullname, mail, password, id),
         )
-        mysql.connection.commit()
+        mysql.connect.commit()
         return redirect(url_for("home"))
 
 
