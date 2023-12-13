@@ -32,7 +32,7 @@ def inicio():
 
 @app.route("/index")
 def index():
-    cur = mysql.connection.cursor()
+    cur = mysql.connect.cursor()
     cur.execute("SELECT * FROM usuarios")
     data = cur.fetchall()
     return render_template("index.html", user=data)
@@ -43,7 +43,7 @@ def admin():
     return render_template("admin.html")
 
 
-@app.route("/acceso-login", methods=["GET", "POST"])
+@app.route("/acceso-login", methods=["GET", "POST"]) #type:ignore
 def login():
     if (
         request.method == "POST"
@@ -116,7 +116,7 @@ def get_user(id):
 
 
 # Editar Usuario
-@app.route("/edit-user/<int:id>", methods=["POST"])
+@app.route("/edit-user/<int:id>", methods=["POST"])#type:ignore
 def update_user(id):
     if request.method == "POST":
         fullname = request.form["fullname"]
@@ -241,7 +241,7 @@ def delete_entrada(id):
         abort(403)  # Prohibido: el usuario no está logueado
 
 
-@app.route("/editar/<int:id>", methods=["GET"])
+@app.route("/editar/<int:id>", methods=["GET"])#type:ignore
 def obtener_contrasena(id):
     if "logueado" in session and session["logueado"]:
         try:
