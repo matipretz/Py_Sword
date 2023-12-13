@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <form class="form-signin" action="/update/{{user[0]}}" method="POST">
+    <form class="form-signin" action="/edit-user/{{user[0]}}" method="POST">
       <!-- TITULO DE FORMULARIO EDITAR REGISTRO -->
       <h1 class="title">Modificar Usuario</h1>
 
@@ -20,7 +20,7 @@
           id="exampleInputName1"
           aria-describedby="namelHelp"
           placeholder="Nombre y Apellido"
-          name="txtFullname"
+          name="fullname"
           value="{{user[1]}}"
         />
         <small id="nameHelp" class="form-text text-muted"></small>
@@ -35,7 +35,7 @@
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
           placeholder="Ingrese su Correo Electrónico "
-          name="txtEmail"
+          name="mail"
           value="{{user[2]}}"
         />
         <small id="emailHelp" class="form-text text-muted"></small>
@@ -51,7 +51,7 @@
           class="form-control"
           id="exampleInputPassword1"
           placeholder="Ingrese su Contraseña"
-          name="txtPassword"
+          name="password"
           value="{{user[3]}}"
         />
       </div>

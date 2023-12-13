@@ -32,7 +32,10 @@ def inicio():
 
 @app.route("/index")
 def index():
-    return render_template("index.html")
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM usuarios")
+    data = cur.fetchall()
+    return render_template("index.html", user=data)
 
 
 @app.route("/admin")
@@ -102,23 +105,19 @@ def crear_registro():
 
     return render_template("index.html", mensaje2="Usuario Registrado Exitosamente")
 
-
-# --- NO FUNCIONA ----
-
-
 # Obtener datos de usuario para editarlos
-@app.route("/edit-user/<id>", methods=["GET"])
+@app.route("/edit-user/<int:id>", methods=["GET"])
 def get_user(id):
     cur = mysql.connection.cursor()
-    cur.execute(" SELECT * FROM usuarios WHERE id = %s", (id))
-    data = cur.fetchall()
-    return render_template("edit-user.html", user=data)
+    cur.execute("SELECT * FROM usuarios WHERE id = %s", (id,))
+    data = cur.fetchone()
+    return redirect(url_for("edit-user<int:id>", user=data))
 
 
 # Editar Usuario
-@app.route("/update/<int:id>", methods=["POST"])
+@app.route("/edit-user/<int:id>", methods=["POST"])
 def update_user(id):
-    if request.methods == "POST":
+    if request.method == "POST":
         fullname = request.form["fullname"]
         mail = request.form["mail"]
         password = request.form["password"]
@@ -129,7 +128,7 @@ def update_user(id):
         SET fullname= %s, 
             mail = %s, 
             password = %s,
-            id_rol = '2',
+            id_rol = '2'
         WHERE id = %s           
         """,
             (fullname, mail, password, id),
@@ -260,7 +259,7 @@ def obtener_contrasena(id):
             abort(500)
 
 
-@app.route("/editar/<int:id>", methods=["PUT"])
+@app.route("/editar/<int:id>", methods=["POST"])
 def editar_contrasena(id):
     if "logueado" in session and session["logueado"]:
         try:
